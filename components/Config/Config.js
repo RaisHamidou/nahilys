@@ -1,5 +1,4 @@
 import "dotenv/config";
 
-const dev = process.env.NODE_ENV != "production";
-export const URL = dev ? "http://localhost:4050" : "https://nahilys.vercel.app";
-
+// Config.js
+export const URL = process.env.NEXT_PUBLIC_API_URL || "";
