@@ -7,6 +7,7 @@ import {
 
 import { useRouter } from "next/navigation";
 import { MyContext } from "../../../context/ContextProvider";
+import { URL } from "../../Config/Config";
 
 const PaypalCheckout = ({
   email,
@@ -29,7 +30,7 @@ const PaypalCheckout = ({
       return;
     }
     
-    const response = await fetch(`http://localhost:4050/api/create-payment`, {
+    const response = await fetch(`${URL}/api/create-payment`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -72,7 +73,7 @@ const PaypalCheckout = ({
         route.push("/thank-you");
 
         clearCart();
-        await fetch(`http://localhost:4050/api/confirm-payment`, {
+        await fetch(`${URL}/api/confirm-payment`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({

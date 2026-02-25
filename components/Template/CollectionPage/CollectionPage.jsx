@@ -4,6 +4,7 @@ import TitleSection from "../../Elements/TitleSection/TitleSection";
 import ProductCard from "../../Elements/ProductCard/ProductCard";
 import { MyContext } from "../../../context/ContextProvider";
 import axios from "axios";
+import { URL } from "../../Config/Config";
 
 export default function CollectionPage() {
   const {price} = useContext(MyContext)
@@ -12,7 +13,7 @@ export default function CollectionPage() {
 
   useEffect(() => {
     const loadProduct = async ()  =>{
-        const res = await axios.get("http://localhost:4050/api/product")
+        const res = await axios.get(`${URL}/api/product`)
         setProducts(res.data)
     }
     loadProduct();

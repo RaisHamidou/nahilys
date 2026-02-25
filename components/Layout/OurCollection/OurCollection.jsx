@@ -4,13 +4,14 @@ import ProductCard from '../../Elements/ProductCard/ProductCard'
 import CTA from '../../Elements/CTA/CTA'
 import TitleSection from '../../Elements/TitleSection/TitleSection'
 import axios from 'axios'
+import { URL } from '../../Config/Config'
 
 export default function OurCollection() {
   const [products, setProducts] = useState([])
 
   useEffect(() => {
     const loadProduct = async ()  =>{
-        const res = await axios.get("http://localhost:4050/api/product")
+        const res = await axios.get(`${URL}/api/product`)
         setProducts(res.data)
     }
     loadProduct();

@@ -15,6 +15,7 @@ import { countryCodes } from "../../CountryCode/CountryCode";
 import { MyContext } from "../../../context/ContextProvider";
 import CartCard from "../../Elements/CartCard/CartCard";
 import TitleSection from "../../Elements/TitleSection/TitleSection";
+import { URL } from "../../Config/Config";
 
 // Composant séparé pour le code promo avec gestion d'état local
 const PromoCodeSection = ({ onPromoApplied }) => {
@@ -178,7 +179,7 @@ const ValidateEmail = (email) => {
       }
 
 
-      const response = await fetch(`http://localhost:4050/api/create-payment`, {
+      const response = await fetch(`${URL}/api/create-payment`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -232,7 +233,7 @@ const ValidateEmail = (email) => {
         setPaymentStatus("Paiement réussi !");
         const productIds = currentCart.map((product) => product.id);
 
-        await fetch(`http://localhost:4050/api/confirm-payment`, {
+        await fetch(`${URL}/api/confirm-payment`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -254,7 +255,7 @@ const ValidateEmail = (email) => {
             service_point_id: selectedServicePoint?.id // AJOUT : Envoi de l'ID du point relais
           }),
         });
-        await axios.post("http://localhost:4050/api/shipments", {
+        await axios.post(`${URL}/api/shipments`, {
   name: `${surnameValue} ${nameValue}`,
   address: adressValue,
   city: cityValue,
