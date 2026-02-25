@@ -1,0 +1,31 @@
+@import "./settings";
+
+//Elements
+@import "../../components/Elements/ProductCard/productCard.scss";
+@import "../../components/Elements/CTA/CTA.scss";
+@import "../../components/Elements/TitleSection/TitleSection.scss";
+@import "../../components/Elements/CartCard/CartCard.scss";
+@import "../../components/Elements/CTA/CartCTA.scss";
+
+//Layout
+@import "../../components/Layout/Header/Header.scss";
+@import "../../components/Layout/Cart/Cart.scss";
+@import "../../components/Layout/Hero/Hero.scss";
+@import "../../components/Layout/OurCollection/OurCollection.scss";
+@import "../../components/Layout/Featured/Featured.scss";
+@import "../../components/Layout/OurSelection/OurSelection.scss";
+@import "../../components/Layout/OtherProduct/OtherProduct.scss";
+@import "../../components/Layout/Footer/Footer.scss";
+
+//Payement
+@import "../../components/Payment/Checkout/Checkout.scss";
+@import "../../components/Payment/PayaplCheckout/PaypalCheckout.scss";
+
+//Template
+@import "../../components/Template/CollectionPage/CollectionPage.scss";
+@import "../../components/Template/DetailsPage/DetailsPage.scss";
+@import "../../components/Template/AboutPage/AboutPage.scss";
+@import "../../components/Template/ContactPage/ContactPage.scss";
+@import "../../components/Template/PaymentPage/PaymentPage.scss";
+@import "../../components/Template/Conditions/Conditions.scss";
+

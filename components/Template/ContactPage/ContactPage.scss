@@ -1,0 +1,79 @@
+.ContactPage{
+    margin-top: 30px;
+.title-section{
+    .title-description{
+        width: 60%;
+        margin: auto;
+
+        @media screen and (max-width:1024px) {
+            width: 80%;
+        }
+        @media screen and (max-width:810px) {
+            width: 90%;
+        }
+        @media screen and (max-width:768px) {
+            width: 80%;
+        }
+        @media screen and (max-width:375px) {
+            font-size: 0.9rem;
+        }
+    }
+}
+.Container-contact-page{
+        width: 60%;
+        //background-color: red;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+@media screen and (max-width:1024px) {
+            width: 70%;
+        }
+        @media screen and (max-width:810px) {
+            width: 80%;
+        }
+        input{
+            height: 50px;
+            margin-bottom: 30px;
+            border: none;
+            border-bottom: solid 1px #d3d3d3;
+            color: black;
+            @media screen and (max-width:375px) {
+            margin-bottom: 20px;
+        }
+            &:focus{
+                outline: none;
+            }
+            &::placeholder{
+            text-transform: uppercase;
+            color: #959595;
+            font-family: $inter;
+            @media screen and (max-width:500px) {
+            font-size: 0.7rem;
+        }
+        }
+        }
+        textarea{
+            border: none;
+            border-bottom: solid 1px #d3d3d3;
+            height: 200px;
+            resize: none;
+            color: black;
+              @media screen and (max-width:375px) {
+            height: 150px;
+        }
+            &:focus{
+                outline: none;
+            }
+            &::placeholder{
+            text-transform: uppercase;
+            color: #959595;
+            font-family: $inter;
+            @media screen and (max-width:500px) {
+            font-size: 0.7rem;
+        }
+        }
+        }
+        
+    }
+    
+}

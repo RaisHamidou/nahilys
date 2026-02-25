@@ -1,0 +1,103 @@
+.container-card-product {
+  border: 1px solid #f5f5f5;
+  width: 33%;
+  aspect-ratio: 3/4;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  cursor: pointer;
+  
+  @media screen and (max-width: 500px) {
+    width: 50%;
+  }
+
+  .product-img {
+    width: 100%;
+    height: 100%;
+
+    &:hover {
+      opacity: 0.9;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+      object-position: top;
+      display: block;
+    }
+  }
+  .product-description-container {
+    background-color: white;
+
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    padding: 15px 0px 15px;
+    gap: 9px;
+    @media screen and (max-width: 768px) {
+      padding: 10px 0px 10px;
+      gap: 7px;
+    }
+    @media screen and (max-width: 500px) {
+      padding: 8px 0px 8px;
+      gap: 5px;
+    }
+
+    .product-name {
+      
+      font-family: $cormorant;
+      font-size: 1.2rem; //28px;
+      font-style: italic;
+      font-weight: 300;
+      letter-spacing: -0.7px;
+      color: black;
+       display: -webkit-box;
+  -webkit-line-clamp: 1; /* nombre de lignes max */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-align: center;
+      @media screen and (max-width: 768px) {
+        font-size: 1.2rem;
+      }
+      @media screen and (max-width: 500px) {
+        font-size: 1rem;
+      }
+    }
+    .product-description {
+      font-family: $inter;
+      font-weight: 300;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: -1px;
+
+      color: $greySecondary;
+
+      @media screen and (max-width: 768px) {
+        font-size: 0.8rem;
+      }
+      @media screen and (max-width: 500px) {
+        font-size: 0.7rem;
+      }
+    }
+    .product-price {
+      font-family: $cormorant;
+      font-size: 1rem;
+      font-weight:lighter;
+      font-style: italic;
+     color: black;
+      @media screen and (max-width: 768px) {
+        font-size: 0.8rem;
+      }
+      @media screen and (max-width: 500px) {
+        font-size: 0.7rem;
+      }
+    }
+  }
+}

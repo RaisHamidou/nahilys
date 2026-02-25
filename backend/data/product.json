@@ -1,0 +1,183 @@
+[
+  {
+    "id": "abaya_layla",
+    "active": true,
+    "name": "Ensemble Abaya Layla",
+    "description":"<p>Affirmez votre élégance avec cet ensemble 3 pièces sophistiqué, alliant parfaitement modernité et tradition. Conçue dans un polyester de haute qualité, cette abaya offre un tombé fluide et impeccable, idéal pour vos grandes occasions ou vos soirées festives.</p> <h3>Les points forts de l'ensemble :</h3> <ul> <li><span class='label'>Détails Orfèvres :</span> L'abaya est magnifiquement ornée de broderies perlées en strass argentés sur le revers du col et les manches, apportant une touche de lumière et de luxe à votre silhouette. </li> <li> <span class='label'>Coupe Kimono Ajustable :</span> Ses larges manches évasées confèrent une allure majestueuse, tandis que la ceinture assortie permet de cintrer la taille selon vos envies.</li> <li> <span class='label'>Confort & Opacité :</span> La sous-robe assortie garantit une couvrance totale et un confort optimal tout au long de la journée.</li> </ul> <h3> Détails & Composition :</h3> <ul> <li><span class='label'>Produit :</span> Ensemble Abaya (3 pièces)</li> <li><span class='label'>Matière :</span> 100% Polyester fluide (confortable et infroissable)</li> <li><span class='label'>Couleur : Bleu Orage / Gris bleuté</li> <li><span class='label'>Détails :</span> Broderies de strass argentés sur le col et les poignets</li> <li><span class='label'>Longueur de la sous-robe :</span> 1,40 m</li> <li><span class='label'>Longueur de l’abaya :</span> 1,37 m</li> <li><span class='label'>Inclus dans le pack :</span> Abaya ouverte, sous-robe sans manches et ceinture assortie</li> </ul>",
+    "sub_description":"Bleu Orage",
+    "image" : "/abaya/bleu-orage/1.jpg",
+    "gallery":["/abaya/bleu-orage/1.jpg","/abaya/bleu-orage/2.jpg","/abaya/bleu-orage/3.jpg","/abaya/bleu-orage/4.jpg"],
+    "slug": "ensemble-abaya-layla",
+    "base_price": 4990,
+    "metadata": {
+      "seo_title": "Ensemble Abaya Layla",
+      "seo_description": "Affirmez votre élégance avec cet ensemble 3 pièces sophistiqué, alliant parfaitement modernité et tradition. Conçue dans un polyester de haute qualité, cette abaya offre un tombé fluide et impeccable, idéal pour vos grandes occasions ou vos soirées festives.</p> <h3>Les points forts de l'ensemble"
+    },
+    "variants": [
+      {
+        "sku": "LAY-BLU-36/38",
+        "attributes": { "color": "Bleu Orage", "code_color":"#576976", "size": "36/38" },
+        "price_override": null,
+        "inventory_quantity": 2,
+        "image":"/abaya/bleu-orage/1.jpg"
+       
+      },
+
+      {
+        "sku": "LAY-BLU-40/43",
+        "attributes": { "color": "Bleu Orage", "code_color":"#576976", "size": "40/43" },
+        "price_override": null,
+        "inventory_quantity": 2,
+        "image":"/abaya/bleu-orage/1.jpg"
+       
+      }
+    ]
+  },
+  {
+    "id": "abaya_inaya",
+    "active": true,
+    "name": "Ensemble Abaya Inaya",
+    "description":"<p>Affirmez votre style avec cet ensemble d'exception qui marie à la perfection modernité et tradition. Sa teinte taupe poudré (mauve terreux), à la fois douce et sophistiquée, en fait une pièce maîtresse pour toutes vos grandes occasions.</p> <h3>Les détails qui font la différence :</h3> <ul> <li>Manches 'Bouffy' Majestueuses : Des manches amples et bouffantes resserrées aux poignets pour un volume aérien et une allure royale.</li> <li>Éclat de Strass : De somptueuses broderies verticales ornées de strass argentés parcourent le long de l'ouverture et les épaules, captant la lumière à chaque mouvement.</li> <li class='label'>Matière Fluide : Confectionnée en polyester de haute qualité, offrant un retombé lourd et élégant tout en restant infroissable.</li> </ul> <h3>Détails et compositions </h3> <p>Produit : Ensemble Abaya (3 pièces)</p> <ul> <li><span class='label'>Matière :</span> 100% Polyester fluide (confortable et infroissable)</li> <li><span class='label'>Couleur :</span> Taupe / Mauve poudré.</li> <li><span class='label'>Détails :</span> Broderies de strass argentés et manche bouffy </li> <li><span class='label'>Longueur de la sous-robe :</span> 1,40 m</li> <li><span class='label'>Longueur de l’abaya :</span> 1,45 m</li> <li>Inclus dans le pack :</span> Abaya ouverte, sous-robe sans manches et ceinture assortie</li> </ul>",
+    "sub_description":"Mauve poudré",
+     "image" : "/abaya/mauve/1.jpg",
+    "gallery":["/abaya/mauve/1.jpg","/abaya/mauve/2.jpg","/abaya/mauve/3.jpg","/abaya/mauve/4.jpg"],
+    "slug": "ensemble-abaya-inaya",
+    "base_price": 4990,
+    "metadata": {
+      "seo_title": "Ensemble Abaya Inaya",
+      "seo_description": "Affirmez votre style avec cet ensemble d'exception qui marie à la perfection modernité et tradition. Sa teinte taupe poudré (mauve terreux), à la fois douce et sophistiquée, en fait une pièce maîtresse pour toutes vos grandes occasions."
+    },
+    "variants": [
+      {
+        "sku": "ABA-MAU-S/M",
+        "attributes": { "color": "Mauve poudré", "code_color":"#DBCFBE", "size": "S/M" },
+        "price_override": null,
+        "inventory_quantity": 2,
+        "image":"/abaya/mauve/1.jpg"
+      },
+
+      {
+        "sku": "ABA-MAU-L/XL",
+        "attributes": { "color": "Mauve poudré", "code_color":"#DBCFBE", "size": "L/XL" },
+        "price_override": null,
+        "inventory_quantity": 2,
+        "image":"/abaya/mauve/1.jpg"
+      }
+    ]
+  },
+  {
+    "id": "abaya_kimono-elegance",
+    "active": true,
+    "name": "Ensemble Abaya Kimono Élégance",
+    "description":"<p>Laissez-vous séduire par cette abaya kimono au design épuré et contemporain. Sa coupe fluide et structurée offre une silhouette élégante tout en assurant un confort absolu.</p> <p>Confectionnée dans un tissu doux et léger, elle se distingue par ses broderies strass délicates ton sur ton qui apportent une touche subtile de raffinement. Son coloris bleu brume, à la fois moderne et intemporel, s’associe parfaitement à une robe blanche ou une tenue monochrome pour un look sophistiqué.</p> <p>Les manches larges façon kimono ajoutent une allure majestueuse, tandis que sa coupe longue allonge la silhouette avec grâce. Idéale pour les occasions spéciales, les soirées élégantes ou pour sublimer une tenue du quotidien.</p> <h3>Détails & compositions</h3> <ul> <li><span class='label'>Produit :</span> Ensemble Abaya (3 pièces)</li> <li><span class='label'>Matière :</span> 100% Polyester fluide (confortable et infroissable)</li> <li><span class='label'>Couleur :</span> Bleu Brume</li> <li><span class='label'>Détails :</span> Broderies strass sur le kimono et les manches</li> <li><span class='label'>Longueur de la sous-robe :</span> 1,40 m</li> <li><span class='label'>Longueur de l’abaya :</span> 1,44 m</li> <li><span class='label'>Inclus dans le pack :</span> Abaya kimono ouverte, sous-robe sans manches et ceinture assortie</li> </ul>",
+    "sub_description":"vert grisé",
+    "image" : "/abaya/vert-grise/1.jpg",
+    "gallery":["/abaya/vert-grise/1.jpg","/abaya/vert-grise/2.jpg","/abaya/vert-grise/3.jpg"],
+    "slug": "ensemble-abaya-kimono-elegance",
+    "base_price": 4990,
+    "metadata": {
+      "seo_title": "Ensemble Abaya Kimono Élégance",
+      "seo_description": "Laissez-vous séduire par cette abaya kimono au design épuré et contemporain. Sa coupe fluide et structurée offre une silhouette élégante tout en assurant un confort absolu."
+    },
+    "variants": [
+      {
+        "sku": "SAF-KIM-S/M",
+        "attributes": { "color": "Vert grisé", "code_color":"#4E606B", "size": "S/M" },
+        "price_override": null,
+        "inventory_quantity": 3,
+        "image":"/abaya/vert-grise/1.jpg"
+      },
+
+      {
+        "sku": "SAF-KIM-L/XL",
+        "attributes": { "color": "Vert grisé", "code_color":"#4E606B", "size": "L/XL" },
+        "price_override": null,
+        "inventory_quantity": 3,
+        "image":"/abaya/vert-grise/1.jpg"
+      }
+    ]
+  },
+  {
+    "id": "abaya_kamila",
+    "active": true,
+    "name": "Ensemble Abaya kamila",
+    "description":"<p>Incarnez l'élégance absolue avec notre ensemble signature, une pièce maîtresse qui allie tradition et modernité. Conçu pour celles qui recherchent une silhouette fluide et raffinée, cet ensemble monochrome beige sablé offre un tombé impeccable pour toutes vos occasions spéciales (Aïd, mariages, ou soirées).</p> <h3>Les points forts de la pièce :</h3> <ul> <li><span class='label'>Coupe Bisht Majestueuse :</span> L’abaya extérieure présente une coupe ample et « papillon » ultra-confortable, offrant une liberté de mouvement totale et une allure royale.</li> <li><span class='label'>Détails Délicats :</span> Ornée de subtils ornements dorés brodés de manière minimaliste, apportant une touche de lumière discrète sans alourdir la tenue.</li> <li><span class='label'>Ensemble Complet :</span> Comprend une sous-robe assortie à manches courte et l’abaya.</li> <li><span class='label'>Tissu Premium :</span> Confectionné dans un tissu de haute qualité, léger et respirant, qui ne se froisse pas facilement et assure un mouvement fluide à chaque pas.</li> </ul> <h3>Détails & compositions</h3> <ul> <li><span class='label'>Produit :</span> Ensemble Abaya (2 pièces)</li> <li><span class='label'>Matière :</span> 100% Polyester fluide (confortable et infroissable)</li> <li><span class='label'>Couleur :</span> Beige sablé / crème</li> <li><span class='label'>Détails :</span> Ornements dorés brodés</li> <li><span class='label'>Longueur de la sous-robe :</span> 1,40 m</li> <li><span class='label'>Longueur de l’abaya :</span> 1,48 m</li> <li><span class='label'>Inclus dans le pack :</span> Abaya coupe Bisht, sous-robe</li> </ul>",
+    "sub_description":"Beige Sablé",
+    "image" : "/abaya/beige-sable/1.jpg",
+    "gallery":["/abaya/beige-sable/1.jpg","/abaya/beige-sable/2.jpg","/abaya/beige-sable/3.jpg"],
+    "slug": "ensemble-abaya-kamila",
+    "base_price": 4990,
+    "metadata": {
+      "seo_title": "Ensemble Abaya kamila",
+      "seo_description": "Incarnez l'élégance absolue avec notre ensemble signature, une pièce maîtresse qui allie tradition et modernité. Conçu pour celles qui recherchent une silhouette fluide et raffinée, cet ensemble monochrome beige sablé offre un tombé impeccable pour toutes vos occasions spéciales (Aïd, mariages, ou soirées)."
+    },
+    "variants": [
+      {
+        "sku": "KAM-BEI-U",
+        "attributes": { "color": "Beige Sablé", "size": "Unique" },
+        "price_override": null,
+        "inventory_quantity": 2,
+        "image":"/abaya/beige-sable/1.jpg"
+      }
+
+     
+    ]
+  },
+  {
+    "id": "abaya_elegance_fluide",
+    "active": true,
+    "name": "L'Élégance Fluide : Robe à Taille Ajustable",
+    "description":"<p>Découvrez l'équilibre parfait entre confort absolu et silhouette sophistiquée. Cette robe longue, d'un beige sable intemporel, est la pièce maîtresse idéale pour celles qui recherchent une allure à la fois minimaliste et raffinée.</p> <h3>Une Coupe Ingénieuse</h3> <p>Le secret de ce modèle réside dans sa polyvalence :</p> <ul> <li><span class='label'>Porté Ample :</span> Sans ajustement, elle offre une coupe « oversize » aérienne et fluide, parfaite pour un style décontracté chic ou une allure bohème.</li> <li><span class='label'>Cintrage Intérieur :</span> Grâce à un système de liens discrets à l'intérieur, vous pouvez ajuster la taille à votre convenance. Cela permet de marquer la silhouette de façon subtile tout en conservant le drapé magnifique des manches chauve-souris.</li> </ul> <h3>Les Détails qui font la Différence</h3> <ul> <li><span class='label'>Manches Kimono :</span> Larges et structurées par de larges revers aux poignets pour un tombé impeccable.</li> <li><span class='label'>Encolure Délicate :</span> Un col rond légèrement fendu qui apporte une touche de féminité discrète.</li> <li><span class='label'>Matière Premium :</span> Un tissu fluide qui ne marque pas, offrant un mouvement gracieux à chaque pas.</li> </ul> <h3>Détails & compositions</h3> <ul> <li><span class='label'>Produit :</span> Robe abaya</li> <li><span class='label'>Matière :</span> 100% Polyester fluide (confortable et infroissable)</li> <li><span class='label'>Couleur :</span> Beige sablé / crème</li> <li><span class='label'>Détails :</span> Cintrage intérieur</li> <li><span class='label'>Longueur de l’abaya :</span> 1,37 m</li> </ul>",
+    "sub_description":"Élégance Fluide",
+    "image" : "/abaya/l-elegance-fluide-robe-taille-ajustable/1.jpg",
+    "gallery":["/abaya/l-elegance-fluide-robe-taille-ajustable/1.jpg","/abaya/l-elegance-fluide-robe-taille-ajustable/2.jpg"],
+    "slug": "l-Élégance-fluide-robe-a-taille-justable",
+    "base_price": 1499,
+    "metadata": {
+      "seo_title": "L'Élégance Fluide : Robe à Taille Ajustable",
+      "seo_description": "Découvrez l'équilibre parfait entre confort absolu et silhouette sophistiquée. Cette robe longue, d'un beige sable intemporel, est la pièce maîtresse idéale pour celles qui recherchent une allure à la fois minimaliste et raffinée."
+    },
+    "variants": [
+      {
+        "sku": "ELF-CRE-U",
+        "attributes": { "color": "Crème", "code_color":"", "size": "Unique" },
+        "price_override": null,
+        "inventory_quantity": 2,
+        "image":"/abaya/l-elegance-fluide-robe-taille-ajustable/1.jpg"
+      }
+    ]
+  },
+  {
+    "id": "abaya_kimono_elegance_fluide",
+    "active": true,
+    "name": "Abaya Kimono Élégance Fluide",
+    "description":"<p>Redéfinissez votre garde-robe avec notre Abaya Kimono, l’équilibre parfait entre pudeur moderne et sophistication intemporelle. Conçue pour la femme contemporaine, cette pièce se distingue par sa coupe épurée et son tombé impeccable.</p> <h3>Les points forts :</h3> <ul> <li><span class='label'>Design Minimaliste :</span> Une coupe ouverte de style kimono avec des liserés contrastés qui soulignent délicatement la silhouette.</li> <li><span class='label'>Confort Absolu :</span> Fabriquée dans un tissu léger et respirant, idéal pour toutes les saisons.</li> <li><span class='label'>Polyvalence :</span> Portez-la sur une robe intérieure (sous-abaya) pour un look formel ou avec un ensemble décontracté pour une touche chic au quotidien.</li> <li><span class='label'>Détails Soignés :</span> Manches larges et finitions précises pour une allure aérienne et effet papillon.</li> </ul> <h3>Détails & compositions</h3> <ul> <li><span class='label'>Produit :</span> Ensemble abaya (3 pièces)</li> <li><span class='label'>Matière :</span> 100% Polyester fluide (confortable et infroissable)</li> <li><span class='label'>Couleur :</span> Crème - marron clair</li> <li><span class='label'>Détails :</span> Coupe kimono</li> <li><span class='label'>Longueur de la sous-robe :</span> 1,40 m</li> <li><span class='label'>Longueur de l’abaya :</span> 1,48 m</li> <li><span class='label'>Inclus dans le pack :</span> Abaya, sous abaya et voile</li> </ul>",
+    "sub_description":"Élégance Fluide",
+    "image" : "/abaya/l-elegance-fluide-kimono/1.jpg",
+    "gallery":["/abaya/l-elegance-fluide-kimono/1.jpg","/abaya/l-elegance-fluide-kimono/2.jpg"],
+    "slug": "abaya-kimono-elegance-fluide",
+    "base_price": 2499,
+    "metadata": {
+      "seo_title": "Abaya Kimono Élégance Fluide",
+      "seo_description": "Redéfinissez votre garde-robe avec notre Abaya Kimono, l’équilibre parfait entre pudeur moderne et sophistication intemporelle. Conçue pour la femme contemporaine, cette pièce se distingue par sa coupe épurée et son tombé impeccable."
+    },
+    "variants": [
+      {
+        "sku": "KEL-CRE-U",
+        "attributes": { "color": "Créme", "code_color":"", "size": "U" },
+        "price_override": null,
+        "inventory_quantity": 3,
+        "image":"/abaya/l-elegance-fluide-kimono/1.jpg"
+      },
+ {
+        "sku": "KEL-MAR-U",
+        "attributes": { "color": "Marron", "code_color":"", "size": "U" },
+        "price_override": null,
+        "inventory_quantity": 1,
+        "image":"/abaya/l-elegance-fluide-kimono/2.jpg"
+      }
+      
+    ]
+  }
+  
+]

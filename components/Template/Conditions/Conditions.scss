@@ -1,0 +1,111 @@
+
+
+.legal-container {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 40px;
+    background-color: #fff;
+    color: #1a1a1a;
+    font-family: $inter;
+    line-height: 1.8;
+    letter-spacing: 0.01em;
+}
+
+.legal-container h2 {
+    font-family: $playfairDisplay;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 15px;
+    margin-top: 50px;
+    margin-bottom: 25px;
+    font-weight: 400;
+
+    @media screen and (max-width:768px) {
+        font-size: 1.5rem;
+    }
+    @media screen and (max-width:450px) {
+        font-size: 1.3rem;
+    }
+    @media screen and (max-width:375px) {
+        font-size: 1.1rem;
+    }
+}
+
+.legal-container h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-top: 30px;
+    text-transform: none;
+    color: #333;
+    @media screen and (max-width:450px) {
+        font-size: 0.95rem;
+    }
+}
+
+.legal-container p, .legal-container li {
+    font-size: 0.95rem;
+    color: #4a4a4a;
+    font-weight: 300;
+    @media screen and (max-width:450px) {
+        font-size: 0.85rem;
+    }
+    @media screen and (max-width:375px) {
+        font-size: 0.75rem;
+    }
+}
+
+.legal-container ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.legal-container ul li {
+    margin-bottom: 10px;
+    padding-left: 20px;
+    position: relative;
+}
+
+/* Tiret élégant pour les listes */
+.legal-container ul li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: #999;
+}
+
+.legal-container a {
+    color: #1a1a1a;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    transition: opacity 0.3s ease;
+}
+
+.legal-container a:hover {
+    opacity: 0.6;
+}
+
+.legal-intro {
+    font-style: italic;
+    font-family: $playfairDisplay;
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+    color: #1a1a1a;
+}
+
+.legal-divider {
+    border: 0;
+    border-top: 1px solid #1a1a1a;
+    margin: 60px 0;
+    width: 50px;
+}
+
+.blockquote{
+    margin: 20px 0; 
+    padding: 20px; 
+    border-left: 1px solid #1a1a1a; 
+    font-style: normal; 
+    background-color: #fafafa;
+    
+}

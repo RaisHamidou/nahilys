@@ -1,0 +1,38 @@
+// Imports (Regroupe-les en un seul appel pour la performance)
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&family=Montserrat:wght@300;400;500&family=Playfair+Display:wght@300;400;500&display=swap');
+
+// Variables de polices
+$inter: "Inter", sans-serif;
+$playfairDisplay: "Playfair Display", serif;
+$cormorant: "Cormorant Garamond", serif;
+$montserrat: "Montserrat", sans-serif;
+
+// Variables de couleurs
+$black: #000000; // Corrigé (était transparent)
+$white: #ffffff;
+$grey: #585858;
+$greySecondary: #757575;
+$greyThird : #4B4A4A;
+$borderGrey: #F5F5F5;
+$gold: #B8985F;
+
+// Reset & Global
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: $white;
+    color: $black;
+    // Rendu des polices plus proche de Figma
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+a{
+    text-decoration: none;
+}
+

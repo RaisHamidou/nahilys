@@ -1,0 +1,42 @@
+.CTA {
+  border: 1px solid $gold;
+  border-radius: 50px;
+
+  cursor: pointer;
+ 
+  width: 30%;
+  height: 50px;
+  margin: 50px auto 50px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-family: $playfairDisplay;
+  font-size: 1rem;
+  color: black;
+  text-decoration: none;
+  letter-spacing: -0.5px;
+
+
+  @media screen and (max-width: 768px) {
+    font-size: 0.8rem;
+    height: 35px;
+  }
+  @media screen and (max-width: 500px) {
+    font-size: 0.7rem;
+    width: 50%;
+  }
+  @media screen and (max-width: 375px) {
+    font-size: 0.7rem;
+    width: 55%;
+  }
+  @media screen and (max-width: 320px) {
+    width: 60%;
+  }
+
+  &:hover {
+    background-color: $gold;
+    color: white;
+  }
+}

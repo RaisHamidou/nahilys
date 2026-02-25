@@ -1,0 +1,290 @@
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 70px;
+ 
+  color: rgb(0, 0, 0);
+  font-family: $playfairDisplay;
+  background-color: white;
+  z-index: 99;
+  border-bottom: 1px solid $borderGrey;
+  padding: 0 100px;
+  .logo{
+    width: 90px;
+    img{
+      width: 100%;
+      
+      object-fit: cover;
+    }
+  }
+  .menuToggle {
+    display: none;
+    cursor: pointer;
+    @media screen and (max-width: 768px) {
+      display: block;
+      font-size: 1.5rem;
+      @media screen and (max-width:375px) {
+        font-size: 1.2rem;
+      }
+    }
+    .closeMenu {
+      display: none;
+      cursor: pointer;
+      @media screen and (max-width: 768px) {
+        font-size: 0rem;
+        position: absolute;
+        right: 20px;
+        top: 20px;
+      }
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    background-color: rgb(255, 255, 255);
+    color: black;
+    z-index: 100;
+    padding: 0px 70px;
+    &:hover {
+      background-color: rgb(255, 255, 255);
+      color: black;
+      .link {
+        color: rgb(0, 0, 0);
+        text-decoration: none;
+        display: block;
+        &::before {
+          content: "";
+          display: block;
+          position: absolute;
+          bottom: -5px;
+          left: 0;
+          width: 0%;
+          height: 1.1px;
+          background-color: currentColor;
+        }
+      }
+    }
+  }
+  @media screen and (max-width:600px) {
+    padding: 0px 50px;
+  }
+  @media screen and (max-width:424px) {
+    padding: 0px 40px;
+  }
+  @media screen and (max-width:375px) {
+    padding: 0px 30px;
+  }
+  .link {
+    color: rgb(80, 80, 80);
+    text-decoration: none;
+    position: relative;
+    font-family: $playfairDisplay;
+   font-size: 1.02rem;
+
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0%;
+      height: 1.1px;
+      background-color: currentColor;
+      transition: width 0.3s ease-in-out;
+
+     
+    }
+     &.active{
+      color: black;
+        &::after{
+          width: 100%;
+        }
+      }
+    &:hover {
+      color: black;
+      &::after {
+        width: 100%;
+      }
+      &.active:hover{
+        &::after{
+          width: 100%;
+        }
+      }
+    }
+     @media screen and (max-width: 1024px) {
+      font-size: 1rem;
+    }
+    @media screen and (max-width: 768px) {
+      color: rgb(80, 80, 80);
+      font-size: 1.4rem;
+      line-height: 2;
+     
+      &::after{
+        width: 0px;
+          background-color: white;
+        }
+        &.active{
+          &::after{
+            width: 0px;
+            background-color: white;
+          }
+        }
+
+        &:hover {
+      color: black;
+      &::after {
+        width: 0%;
+      }
+      &.active:hover{
+        &::after{
+          width: 0%;
+        }
+      }
+    }
+        
+    }
+    @media screen and (max-width: 320px) {
+              font-size: 1.2rem;
+            }
+  }
+
+  .overlay {
+    background: rgba(0, 0, 0, 0.621);
+    position: fixed;
+
+    width: 100%;
+    height: 100vh;
+    left: 0;
+    top: 70px;
+    z-index: 5;
+    opacity: 0;
+    transition: opacity ease-in-out 0.3s;
+    flex-shrink: 0;
+    pointer-events: none;
+    @media screen and (max-width: 768px) {
+      &.show-overlay {
+        width: 100%;
+        height: 100vh;
+        opacity: 1;
+        pointer-events: auto;
+      }
+    }
+  }
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(0%);
+    gap: 20;
+    z-index: 10;
+    transform: translateX(-50%);
+    
+    @media screen and (max-width: 768px) {
+      position: fixed;
+      top: 70px;
+      left: 0;
+      width: 50%;
+      height: 100vh;
+      background-color: rgb(255, 255, 255);
+      align-items: flex-start;
+
+      transform: translate(-100%);
+      transition: transform 0.3s ease-in-out;
+      flex-direction: column;
+
+      &.menu-open {
+        transform: translateX(0%);
+      }
+    }
+    @media screen and (max-width: 660px) {
+      width: 60%;
+    }
+    @media screen and (max-width: 560px) {
+      width: 80%;
+    }
+    @media screen and (max-width: 375px) {
+    }
+    @media screen and (max-width: 320px) {
+      width: 80%;
+    }
+    .menu {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+
+      gap: 20;
+      @media screen and (max-width: 768px) {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        margin-top: 50px;
+        margin: 50px auto 0px;
+        width: 80%;
+      }
+
+      li {
+        list-style: none;
+        position: relative;
+       
+        @media screen and (max-width: 768px) {
+          width: 100%;
+          border-bottom: 0.5px solid #e0e0e0;
+          &:last-child {
+            border-bottom: none;
+          }
+          
+        
+        }
+      }
+    }
+    .social-icons {
+      display: none;
+      margin: auto;
+      width: 80%;
+      
+      position: relative;
+      a{
+        color: grey;
+        font-size: 0.8rem;
+        text-decoration: none;
+        font-family: $montserrat;
+      }
+      &::before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: -8px;
+        width: 100%;
+        height: 1px;
+        background-color: $borderGrey;
+      }
+      @media screen and (max-width: 768px) {
+        display: block;
+        .icons {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+
+          li {
+            list-style: none;
+            .link {
+              font-size: 0.8rem;
+              font-weight: 500;
+              color: rgb(147, 147, 147);
+              font-family: $montserrat;
+              letter-spacing: -0.5px;
+              @media screen and (max-width: 320px) {
+                font-size: 0.7rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

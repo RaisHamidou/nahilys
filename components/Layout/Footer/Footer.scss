@@ -1,0 +1,162 @@
+.footer {
+
+  
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  border-top: 1px solid $borderGrey;
+  padding: 50px 100px 0px;
+  gap: 100px;
+  width: 80%;
+  margin: auto;
+  //margin: 100px auto;
+  //background-color: red;
+  @media screen and (max-width:850px) {
+    gap:60px
+  }
+  @media screen and (max-width:779px) {
+    flex-direction: column;
+    
+    padding: 30px 0px;
+    gap: 30px;
+
+  }
+  @media screen and (max-width:375px) {
+            gap: 20px;
+        }
+  .footer-logo {
+    width: 100px;
+    img{
+      width: 100%;
+      object-fit: cover;
+    }
+    @media screen and (max-width:779px) {
+        margin-bottom: 20px;
+    }
+  }
+  h3 {
+    font-family: $playfairDisplay;
+    font-weight: 300;
+    margin: 20px 0px;
+    color: $grey;
+    font-size: 1.1rem;
+    font-style: italic;
+@media screen and (max-width:779px) {
+    margin: 0px 0px 10px 0px;
+    text-align: center;
+}
+     
+  }
+  .container-get-in-touch {
+    width: 25%;
+    @media screen and (max-width: 1024px) {
+      width: 20%;
+    }
+    @media screen and (max-width:779px){
+        width: auto;
+    }
+    .get-in-touch {
+      height: 100px;
+      margin-bottom: 20px;
+        @media screen and (max-width:779px){
+            height: auto;
+            width: 190px;
+            
+        }
+      p {
+        font-size: 0.9rem;
+        font-family: $inter;
+        font-weight: 400;
+        color: $grey;
+        margin-bottom: 10px;
+
+        @media screen and (max-width: 1024px) {
+          font-size: 0.7rem;
+        }
+        @media screen and (max-width:779px) {
+            font-size: 0.8rem;
+            text-align: center;
+        }
+        @media screen and (max-width:375px) {
+            font-size: 0.7rem;
+            text-align: center;
+        }
+      }
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 15px;
+      
+@media screen and (max-width:779px) {
+            
+            align-items: center;
+      justify-content: center;
+        }
+      .icon {
+        font-size: 0.9rem;
+        margin-top: 5px;
+        color: $gold;
+        cursor: pointer;
+        &:hover{
+        color: lighten($gold, 10);
+      }
+        @media screen and (max-width: 1024px) {
+          font-size: 0.8rem;
+        }
+        @media screen and (max-width:779px) {
+            font-size: 0.8rem;
+            align-items: center;
+      justify-content: center;
+        }
+      }
+    }
+  }
+  ul {
+    //background-color: rgba(255, 0, 0, 0.216);
+    height: 100px;
+    margin-bottom: 20px;
+@media screen and (max-width:779px){
+            height: auto;
+            width: 190px;
+            
+        }
+    li {
+      list-style: none;
+      margin-bottom: 8px;
+      
+
+      @media screen and (max-width: 1024px) {
+        margin-bottom: 5px;
+      }
+      @media screen and (max-width: 779px) {
+        margin-bottom: 10px;
+        text-align: center;
+      }
+      @media screen and (max-width:375px) {
+            margin-bottom: 5px;
+        }
+    }
+
+    a {
+      font-family: $inter;
+      color: $grey;
+      font-weight: 400;
+      font-size: 0.9rem;
+      cursor: pointer;
+      &:hover{
+        color: lighten(black, 20);
+      }
+      @media screen and (max-width: 1024px) {
+        font-size: 0.7rem;
+      }
+      @media screen and (max-width:779px) {
+            font-size: 0.8rem;  
+        }
+        @media screen and (max-width:375px) {
+            font-size: 0.7rem;
+            
+        }
+    }
+  }
+}

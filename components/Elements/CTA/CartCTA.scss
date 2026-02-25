@@ -1,0 +1,23 @@
+.cart-cta{
+    background-color: black;
+            color: white;
+            font-family: $playfairDisplay;
+            font-size: 0.8rem;
+            letter-spacing: -0.5px;
+            padding: 13px;
+            display: flex;
+    align-items: center;
+    justify-content: center;
+   width: 80%;
+    cursor: pointer;
+    border-radius: 50px;
+    p{
+        position: relative;
+        top:-1px;
+        
+    }
+
+    &:hover{
+        background-color: lighten(black, 10);
+    }
+}

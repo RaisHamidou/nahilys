@@ -1,0 +1,18 @@
+.container-our-collection{
+    width: 80%;
+    margin: 50px auto;
+    @media screen and (max-width:768px) {
+        width: 90%;
+    }
+    
+    .container-cards{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    width: 100%;
+    }
+
+    
+}

@@ -1,0 +1,61 @@
+.OtherProduct{
+    width: 90%;
+    margin: 0px auto;
+
+    @media screen and (max-width:768px) {
+        width: 90%;
+    }
+.other-product-title{
+    width: 100%;
+    .title-section{
+        text-align: start;
+        margin-left: 0;
+        margin-bottom: 10px;
+        .title{
+            margin-bottom: 10px;
+            @media screen and (max-width:600px) {
+                font-size: 2.2rem;
+                text-wrap: balance;
+                
+            }
+           
+        }
+    }
+}
+.container-other-product{
+display: flex;
+gap: 10px;
+
+@media screen and (max-width:600px) {
+   overflow-x: auto;
+        
+        // 1. On élargit le conteneur pour qu'il sorte du parent (85% ou 90%)
+        // On utilise -5% car ton parent OurSelection laisse 5% de vide de chaque côté (100-90 / 2)
+        margin-left: -5%; 
+        margin-right: -5%;
+
+        // 2. On rajoute du padding pour ré-aligner les cartes avec le titre
+        padding-left: 5%; 
+        padding-right: 5%;
+
+        // 3. On nettoie l'affichage
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        
+        &::-webkit-scrollbar {
+            display: none;
+        }
+        scrollbar-width: none;
+    &::-webkit-scrollbar{
+        display: none;
+    }
+}
+}
+.container-card-product{
+    width: calc(33% - 21px / 3);
+    @media screen and (max-width:600px) {
+    width: 70%;
+    flex-shrink: 0;
+}
+}
+}
