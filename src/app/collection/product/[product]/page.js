@@ -3,23 +3,24 @@ import Header from '../../../../../components/Layout/Header/Header'
 import Footer from '../../../../../components/Layout/Footer/Footer'
 import axios from 'axios'
 import PageDetails from '../../../../../components/Template/DetailsPage/DetailsPage'
+import { URL } from '../../../../../components/Config/Config'
 
 export default async function page({params}) {
   const {product} = await params
 
-   const {data:posts} = await axios.get(`http://localhost:4050/api/product/${product}`,{
+   const {data:posts} = await axios.get(`${URL}/api/product/${product}`,{
     Headers:{
       Accept:"application/json"
     }
   }) 
 
-const prod = posts[0]
+const products = posts[0]
 
   return (
 
     <div>
     <Header/>
-    <PageDetails data={prod}/>
+    <PageDetails data={products}/>
     <Footer/>
     </div>
   )

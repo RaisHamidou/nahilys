@@ -74,13 +74,13 @@ useEffect(() => {
         <div className="social-icons">
             <ul className='icons'>
               <li>
-              <a href="#">Instagram</a>
+              <a href="https://www.instagram.com/naahilys">Instagram</a>
               </li>
               <li>
-              <a href="#">TikTok</a>
+              <a href="https://www.tiktok.com/@naahilys">TikTok</a>
               </li>
               <li>
-              <a href="#">Snapchat</a>
+              <a href="https://www.snapchat.com/@naahilys">Snapchat</a>
               </li>
             </ul>
           </div>

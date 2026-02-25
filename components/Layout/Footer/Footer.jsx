@@ -18,9 +18,9 @@ export default function Footer() {
       <div className="get-in-touch">
       <p>Retrouvez-nous également sur nos réseaux sociaux !</p>
       <div className="social-icons">
-          <div className="icon"><FaTiktok/></div>
-          <div className="icon"><FaInstagram/></div>
-          <div className="icon"><FaSnapchatGhost/></div>
+          <div className="icon"><a href='https://www.tiktok.com/@naahilys'><FaTiktok/></a></div>
+          <div className="icon"><a href='https://www.instagram.com/naahilys'><FaInstagram/></a></div>
+          <div className="icon"><a href='https://www.snapchat.com/@naahilys'><FaSnapchatGhost/></a></div>
         </div>
       </div>
         
@@ -36,7 +36,7 @@ export default function Footer() {
         </ul>
       </div>
       <div className="info">
-        <h3>Information</h3>
+        <h3>Informations</h3>
         <ul>
           <li><a>À propos de nous</a></li>
           <li><a>Contact</a></li>
