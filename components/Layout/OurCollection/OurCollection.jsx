@@ -1,13 +1,15 @@
 "use client"
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import ProductCard from '../../Elements/ProductCard/ProductCard'
 import CTA from '../../Elements/CTA/CTA'
 import TitleSection from '../../Elements/TitleSection/TitleSection'
 import axios from 'axios'
 import { URL } from '../../Config/Config'
+import { MyContext } from '../../../context/ContextProvider'
 
 export default function OurCollection() {
   const [products, setProducts] = useState([])
+  const {price} = useContext(MyContext)
 
   useEffect(() => {
     const loadProduct = async ()  =>{
@@ -16,16 +18,11 @@ export default function OurCollection() {
     }
     loadProduct();
   }, []);
-  console.log(products.slice(0,6))
-  const price = (number) =>{
-    const prx = number / 100
-    return prx.toFixed(2)
-  }
+  
   return (
     <section className='container-our-collection'>
     <TitleSection title={"Notre collection"}>
-      Une collection capsule exclusive limitée à 50 pièces. Chaque abaya est numérotée et 
-      accompagnée d'un certificat d'authenticité signé par notre directrice artistique.
+      Des abayas élégantes et modernes, conçues avec des tissus fluides et confortables. Simples, raffinées et faciles à porter au quotidien comme pour vos occasions spéciales.
     </TitleSection>
     <div className="container-cards">
     {

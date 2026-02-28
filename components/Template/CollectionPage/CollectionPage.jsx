@@ -22,8 +22,8 @@ export default function CollectionPage() {
     <div className="collection-page">
       <div className="collection-title">
         <TitleSection title="Notre collection">
-          Une collection <strong>exclusive</strong>. <br />
-          Limitée à 50 pièces numérotées.
+          Des abayas élégantes et modernes, conçues avec des tissus fluides et <strong> confortables.</strong> Simples, 
+         <strong> raffinées</strong> et faciles à porter au quotidien comme pour vos occasions spéciales.
         </TitleSection>
       </div>
       <div className="container-collection">

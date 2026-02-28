@@ -256,18 +256,18 @@
 
     .containter-total-price {
       border: none;
-     
-      width: 70%;
-      height: 60px;
+      //background-color: red;
+      width: 56%;
+      height: 30px;
       display: flex;
       align-items: center;
-      justify-content: space-around;
-      margin: 20px auto 50px auto;
-      border-radius: 7px;
+      justify-content: space-between;
+      margin: 10px auto 0px auto;
+      //border-radius: 7px;
       padding: 0;
       color: #000000;
       font-family: $playfairDisplay;
-     // border: solid 2px #f6efef;
+     //border: solid 2px #f6efef;
       @media screen and (max-width: 430px) {
         width: 90%;
       }
@@ -282,6 +282,18 @@
         font-weight: bold;
         margin-left: 5px;
         text-transform: uppercase;
+      }
+    }
+    .containter-sub-total-price{
+      width: 56%;
+      margin: 30px auto 40px;
+
+      .sub-total{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 5px;
+        font-size: 0.9rem;
       }
     }
   }
@@ -658,4 +670,19 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   padding: 10px;
   background: #f9f9f9;
   border-radius: 6px;
+}
+
+.relay-btn{
+  background: #96154A;
+  margin-top: 10px; 
+  margin-bottom: 20px;
+  width: 100%;
+  padding: 10px 0px;
+  border-radius: 50px;
+  color: white;
+  font-family: $playfairDisplay;
+  font-style: italic;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
 }

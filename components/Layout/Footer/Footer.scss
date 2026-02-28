@@ -99,8 +99,14 @@
         margin-top: 5px;
         color: $gold;
         cursor: pointer;
+        a{
+          color: $gold;
+        }
         &:hover{
-        color: lighten($gold, 10);
+          a{
+             color: lighten($gold, 10);
+          }
+       
       }
         @media screen and (max-width: 1024px) {
           font-size: 0.8rem;

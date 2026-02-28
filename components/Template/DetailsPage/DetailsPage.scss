@@ -1,5 +1,5 @@
 .page-details {
-  //background-color: red;
+  
   height: auto;
   position: relative;
 
@@ -10,7 +10,7 @@
 
   .container-page-details {
     display: flex;
-    @media screen and (max-width:700px) {
+    @media screen and (max-width:768px) {
     flex-direction: column;
     position: relative;
     height: auto;
@@ -27,7 +27,7 @@
       @media screen and (max-width:1024px) {
         width: 50%;
       }
-      @media screen and (max-width:700px) {
+      @media screen and (max-width:768px) {
    width: 100%;
    margin: auto;
    
@@ -67,7 +67,7 @@
       }
     }
     .img-detail-product {
-      background-color: gainsboro;
+
       width: 50%;
       height: auto;
       aspect-ratio: 3/4;
@@ -81,14 +81,31 @@
       @media screen and (max-width:1024px) {
         height: Auto;
       }
-      @media screen and (max-width:700px) {
+      @media screen and (max-width:768px) {
       width: 100%;
       height: auto;
+      display: flex;
+       overflow-x: auto;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        gap: 10px;
+        &::-webkit-scrollbar {
+            display: none;
+        }
+        scrollbar-width: none;
+    &::-webkit-scrollbar{
+        //display: none;
+    }
+    .img-pr{
+flex-shrink: 0;      /* Empêche l'image de s'écraser */
+        width: 80%;
+    }
       img{
+        
         object-position: bottom;
       }
     } 
-     /* 
+     
     @media screen and (max-width:578px) {
       width: 100%;
       img{
@@ -107,7 +124,7 @@
     }
      @media screen and (max-width:375px) {
       height: 400px;
-    } */
+    } 
     }
 
     .config {
@@ -205,7 +222,7 @@
         width: 95%;
         font-family: $inter;
         font-style: italic;
-        color: #757575;
+           color:  #464646;
         margin-bottom: 5px;
         list-style: none;
          @media screen and (max-width:1024px) {
@@ -228,7 +245,8 @@
     li{
       list-style: none;
       .label{
-       color:  #464646;;
+        font-style: normal;
+       color: #000000;
         font-weight: 400;
         //font-size: 0.9rem;
       
@@ -240,7 +258,7 @@
   .no-sticky-cart{
     display: block;
     margin-top: 30px;
-    @media screen and (max-width:700px) {
+    @media screen and (max-width:768px) {
     position: sticky;
     bottom: 0;
     width: 100%;
@@ -258,7 +276,7 @@
   }
   .sticky-cart{
     display: none;
-    @media screen and (max-width:700px) {
+    @media screen and (max-width:768px) {
     background-color: rgb(252, 251, 251);
     position: sticky;
     bottom: 0;

@@ -35,16 +35,17 @@ export default function PageDetails({ data }) {
     <div className="page-details">
       <div className="container-page-details">
         <div className="img-detail-product">
-          <div className="img-pr">
+          
              {
             data.gallery.map((image, index) =>{
               return(
-              
-                <img key={index} src={image} alt={data.name} />
+              <div key={index}  className="img-pr">
+                <img src={image} alt={data.name} />
+                   </div>
               )
             })
           }
-          </div>
+       
          
         </div>
         <div className="details">
@@ -114,7 +115,7 @@ export default function PageDetails({ data }) {
         </div>
       </div>
       <div className="Other-product">
-        <OtherProduct />
+        <OtherProduct id={data.id} />
       </div>
     </div>
   );

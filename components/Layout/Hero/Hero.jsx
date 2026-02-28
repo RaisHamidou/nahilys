@@ -1,5 +1,5 @@
 import React from 'react'
-import img from "../../../assets/images/abya/pexels-cottonbro-9881073.jpg"
+import img from "../../../assets/images/hero/638282732_1506553168145130_72378959199333292_n.jpg"
 import TitleSection from '../../Elements/TitleSection/TitleSection'
 
 export default function Hero() {

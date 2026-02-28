@@ -83,7 +83,8 @@ const ContextProvider = ({ children }) => {
     localStorage.setItem("product", JSON.stringify(updatedProducts));
     setRefresh(!refresh);
   };
-  console.log(currentCart);
+  const now = Date.now()
+  console.log(new Date(now));
 
   //localStorage.clear
 

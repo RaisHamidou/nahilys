@@ -4,7 +4,7 @@ import React from 'react'
 
 export default function ProductCard({slug, img,name, description, price}) {
   return (
-    <a href={`collection/product/${slug}`} className='container-card-product'>
+    <a href={`/collection/product/${slug}`} className='container-card-product'>
       <div className="product-img">
         <img src={img} alt={name} />
       </div>

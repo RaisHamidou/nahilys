@@ -1,6 +1,6 @@
 import React from 'react'
 import TitleSection from '../../Elements/TitleSection/TitleSection'
-import img from "../../../assets/images/abya/pexels-qalanjos-fashions-online-abaya-store-673551486-29188566.jpg"
+import img from "../../../assets/images/about/636692079_930814542746995_7534537002944087433_n.jpg"
 export default function AboutPage() {
   return (
     <div className='About-page'>
@@ -28,16 +28,14 @@ export default function AboutPage() {
             Notre engagement est de proposer des créations qui traversent le temps, 
             tout en restant fidèles à nos valeurs familiales et humaines.</p>
             
-            <p>Venez également nous découvrir sur nos réseaux sociaux <a href="#">Instagram</a>, <a href="#">Tik Tok</a> et <a href="#">Snapchat</a>.</p>
+            <p>Venez également nous découvrir sur nos réseaux sociaux 
+            <a href="https://www.instagram.com/naahilys">Instagram</a>, 
+            <a href="https://www.tiktok.com/@naahilys'">Tik Tok</a> et 
+            <a href="https://www.snapchat.com/@naahilys">Snapchat</a>.</p>
           </div>
 
         </div>
-{/* <div className="about-second-p">
-          <p>Plus qu’un simple vêtement, nous souhaitons offrir une identité, 
-            une manière de s’exprimer librement et avec élégance. 
-            Notre engagement est de proposer des créations qui traversent le temps, 
-            tout en restant fidèles à nos valeurs familiales et humaines.</p>
-        </div> */}
+
     </div>
         
         

@@ -2,6 +2,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import { FaCalendarDays, FaClock } from "react-icons/fa6";
+import { CiDeliveryTruck } from "react-icons/ci";
 
 import axios from "axios";
 import Script from 'next/script'; // <--- AJOUT : Pour charger le widget Sendcloud
@@ -17,7 +18,13 @@ import CartCard from "../../Elements/CartCard/CartCard";
 import TitleSection from "../../Elements/TitleSection/TitleSection";
 import { URL } from "../../Config/Config";
 
-// Composant séparé pour le code promo avec gestion d'état local
+const genererNumeroCommande = () => {
+    const timestamp = Date.now().toString(36).toUpperCase();
+    const aleatoire = Math.random().toString(36).substring(2, 5).toUpperCase();
+    return `ORD-${timestamp}-${aleatoire}`;
+  };
+
+/* // Composant séparé pour le code promo avec gestion d'état local
 const PromoCodeSection = ({ onPromoApplied }) => {
   const { promo, isPromoValid } = useContext(MyContext);
   const [isApplying, setIsApplying] = useState(false);
@@ -29,7 +36,7 @@ const PromoCodeSection = ({ onPromoApplied }) => {
     if (!promoCode) return;
 
     setIsApplying(true);
-
+   
     try {
       // Désactiver Stripe pendant l'application du promo
       await onPromoApplied(promoCode);
@@ -61,7 +68,7 @@ const PromoCodeSection = ({ onPromoApplied }) => {
       </div>
     </form>
   );
-};
+}; */
 
 const CheckoutForm = () => {
   const stripe = useStripe();
@@ -85,17 +92,20 @@ const CheckoutForm = () => {
   const [selectedServicePoint, setSelectedServicePoint] = useState(null);
 
   const route = useRouter();
+    const deliveryPrice = 640
+  const priceToPay = total+ deliveryPrice
 
-  const [paymentStatus, setPaymentStatus] = useState(`Payer ${price(total)} €`);
+  const [paymentStatus, setPaymentStatus] = useState(`Payer ${price(price(priceToPay))} €`);
   const [cardError, setCardError] = useState(null);
   const [paymentMethod, setPaymentMethod] = useState("card");
   const [stripeEnabled, setStripeEnabled] = useState(true); // NOUVEAU STATE
   const [formKey, setFormKey] = useState(0);
 
+
   // Mettre à jour le paymentStatus quand le prix change
   useEffect(() => {
-    setPaymentStatus(`Payer ${price(total)} €`);
-  }, [price, total]);
+    setPaymentStatus(`Payer ${price(priceToPay)} €`);
+  }, [total]);
 
   const handlePromoApplied = async (promoCode) => {
     // DÉSACTIVER Stripe pendant la validation du promo
@@ -154,6 +164,10 @@ const ValidateEmail = (email) => {
       setCardError("Veuillez patienter pendant l'application du code promo");
       return;
     }
+    if (!selectedServicePoint) {
+      setCardError("Veuillez sélectionner un point relais pour continuer.");
+      return;
+    }
 
     setPaymentStatus("paiement en cours...");
     setCardError(null);
@@ -165,16 +179,16 @@ const ValidateEmail = (email) => {
 
     if (invalidFields.length > 0) {
       setShowAlert(true);
-      setPaymentStatus(`Payer ${price(total)} €`);
+      setPaymentStatus(`Payer ${price(priceToPay)} €`);
       return;
     }
-
+ const numCommandeUnique = genererNumeroCommande();
     try {
       const cardElement = elements.getElement(CardElement);
 
       if (!cardElement) {
         setCardError("Élément de carte non disponible.");
-        setPaymentStatus(`Payer ${price(total)} €`);
+        setPaymentStatus(`Payer ${price(priceToPay)} €`);
         return;
       }
 
@@ -185,9 +199,10 @@ const ValidateEmail = (email) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          amount: total,
-          currentTotal: total,
-          total: total,
+          orderId:numCommandeUnique,
+          amount: priceToPay,
+          currentTotal: priceToPay,
+          total: priceToPay,
           name: nameValue,
           surname: surnameValue,
           cardName: nameCardValue,
@@ -227,7 +242,7 @@ const ValidateEmail = (email) => {
         setPaymentStatus("Une erreur s'est produite, Veuillez réessayer");
 
         setTimeout(() => {
-          setPaymentStatus(`Payer ${price(total)} €`);
+          setPaymentStatus(`Payer ${price(priceToPay)} €`);
         }, 5000);
       } else if (paymentIntent && paymentIntent.status === "succeeded") {
         setPaymentStatus("Paiement réussi !");
@@ -239,14 +254,15 @@ const ValidateEmail = (email) => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
+            orderId: numCommandeUnique,
             paymentIntentId: paymentIntent.id,
             email: emailValue,
             name: nameValue,
             surname: surnameValue,
             product: productIds,
-            amount: total,
-            currentTotal: total,
-            total: total,
+            amount: priceToPay,
+            currentTotal: priceToPay,
+            total: priceToPay,
             address: adressValue,
             city: cityValue,
             codePostal: codePostalValue,
@@ -256,6 +272,7 @@ const ValidateEmail = (email) => {
           }),
         });
         await axios.post(`${URL}/api/shipments`, {
+           order_number: numCommandeUnique,
   name: `${surnameValue} ${nameValue}`,
   address: adressValue,
   city: cityValue,
@@ -267,7 +284,7 @@ const ValidateEmail = (email) => {
     description: item.name,
     quantity: item.quantity,
     weight: "0.5", // Sendcloud exige un poids (ex: 0.5kg)
-    value: item.price || item.pr, // Sendcloud exige une valeur monétaire
+    value: price(item.price)  || price(item.pr) , // Sendcloud exige une valeur monétaire
   })),
   service_point_id: selectedServicePoint?.id 
 });
@@ -277,7 +294,7 @@ const ValidateEmail = (email) => {
     } catch (error) {
       console.error("Erreur lors du paiement:", error);
       setCardError("Une erreur inattendue s'est produite");
-      setPaymentStatus(`Payer ${price(total)} €`);
+      setPaymentStatus(`Payer ${price(priceToPay)} €`);
     }
   };
 
@@ -355,21 +372,30 @@ const ValidateEmail = (email) => {
               : null}
           </div>
 
-          <div className="containter-total-price">
+          <div className="containter-sub-total-price">
+          <div className="sub-total">
+ <div className="total">Sous-total</div>
+            <div className="price">
+              {price(total)} € 
+            </div>
+          </div>
+           <div className="sub-total">
+            <div className="total">Livraison</div>
+            <div className="price">
+              {price(deliveryPrice)} €
+            </div>
+           </div>
+            
+          </div>
+          
+           <div className="containter-total-price">
             <div className="total">Total</div>
             <div className="price">
-              {" "}
-              {price != total ? (
-                <span className="price-b">{price(total)} €</span>
-              ) : (
-                `${price(total)} €`
-              )}
-              {price != total ? `${price(total)} €` : null}
-              <span className="ttc">ttc</span>
+              {price(priceToPay)} € 
             </div>
           </div>
 
-          <PromoCodeSection onPromoApplied={handlePromoApplied} />
+          {/* <PromoCodeSection onPromoApplied={handlePromoApplied} /> */}
         </div>
       </div>
 
@@ -474,10 +500,10 @@ const ValidateEmail = (email) => {
             <button 
               type="button" 
               onClick={openServicePointPicker} 
-              className="pay-btn" 
-              style={{background: "#5e35b1", marginTop: "10px", marginBottom: "20px"}}
+              className="relay-btn" 
+              
             >
-              📍 {selectedServicePoint ? `Point choisi: ${selectedServicePoint.name}` : "Choisir un Point Relais"}
+               {selectedServicePoint ? `Point choisi: ${selectedServicePoint.name}` : "Choisir un Point Relais"}
             </button>
           </div>
 
@@ -506,6 +532,7 @@ const ValidateEmail = (email) => {
 
               <div className="paypal-button">
                 <PaypalCheckout
+                orderId={genererNumeroCommande()}
                   email={emailValue}
                   name={nameValue}
                   surname={surnameValue}

@@ -17,6 +17,7 @@ const PaypalCheckout = ({
   city,
   codePostal,
   country,
+  orderId
   
 }) => {
   const stripe = useStripe();
@@ -24,7 +25,8 @@ const PaypalCheckout = ({
   const { currentCart, total, clearCart, price, } = useContext(MyContext);
 
   const route = useRouter();
-
+  const deliveryPrice = 640
+  const priceToPay = total+ deliveryPrice
   const handleExpressCheckout = async (event) => {
     if (!stripe || !elements) {
       return;
@@ -41,14 +43,14 @@ const PaypalCheckout = ({
             name: name,
             surname:surname,  
             productIds: currentCart.map((product) => product.id),
-            amount:  total, 
-            total:total,
+            amount:priceToPay, 
+            total:priceToPay,
             address:address, 
             city:city, 
             codePostal:codePostal, 
             country:country,
             products:currentCart,
-            
+            orderId:orderId
       }),
     });
 
@@ -57,7 +59,7 @@ const PaypalCheckout = ({
       const { error, paymentIntent } = await stripe.confirmPayment({
         clientSecret,
         elements,
-       amount: price,
+       amount: priceToPay,
         currency: "eur",
         payment_method: {},
         confirmParams: {
@@ -82,14 +84,15 @@ const PaypalCheckout = ({
             name: name,
             surname:surname,  
             bookIds: currentCart.map((book) => book.id),
-           amount:  total,
-            currentTotal: total,
-            total:total,
+           amount:priceToPay,
+            currentTotal: priceToPay,
+            total:priceToPay,
             address:address, 
             city:city, 
             codePostal:codePostal, 
             country:country,
             products:currentCart,
+            orderId:orderId,
            
           }),
         });
@@ -105,7 +108,7 @@ const PaypalCheckout = ({
       <ExpressCheckoutElement
         onConfirm={handleExpressCheckout}
         options={{
-          amount: price,
+          amount: priceToPay,
           currency: "eur",
           wallets: { paypal: "auto" },
           appearance: {
