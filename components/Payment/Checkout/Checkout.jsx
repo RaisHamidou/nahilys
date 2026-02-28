@@ -101,7 +101,14 @@ const CheckoutForm = () => {
   const [stripeEnabled, setStripeEnabled] = useState(true); // NOUVEAU STATE
   const [formKey, setFormKey] = useState(0);
 
-
+  const DateOfToday = () => {
+  const date = new Date();
+  return date.toLocaleDateString("fr-FR", {
+    day: "numeric",
+    month: "short", // "short" donne "févr.", on va juste enlever le point si nécessaire
+    year: "numeric",
+  }).replace('.', ''); // Enlève le point après le mois abrégé
+};
   // Mettre à jour le paymentStatus quand le prix change
   useEffect(() => {
     setPaymentStatus(`Payer ${price(priceToPay)} €`);
@@ -212,6 +219,8 @@ const ValidateEmail = (email) => {
           codePostal: codePostalValue,
           country: countryValue,
           products: currentCart,
+          delivery:deliveryPrice,
+          date:DateOfToday
         }),
       });
 
@@ -263,12 +272,14 @@ const ValidateEmail = (email) => {
             amount: priceToPay,
             currentTotal: priceToPay,
             total: priceToPay,
+            delivery:deliveryPrice,
             address: adressValue,
             city: cityValue,
             codePostal: codePostalValue,
             country: countryValue,
             products: currentCart,
-            service_point_id: selectedServicePoint?.id // AJOUT : Envoi de l'ID du point relais
+            service_point_id: selectedServicePoint?.id, // AJOUT : Envoi de l'ID du point relais
+            date:DateOfToday,
           }),
         });
         await axios.post(`${URL}/api/shipments`, {
