@@ -22,7 +22,8 @@ export default function OtherProduct({id}) {
     }
     loadProduct();
   }, []);
-  const randomProduct = products.filter((item)=> item.id != id).sort(() => 0.5 - Math.random()).slice(0, 4)
+  const activeProducts = products.filter(f=> f.active == true)
+  const randomProduct = activeProducts.filter((item)=> item.id != id).sort(() => 0.5 - Math.random()).slice(0, 4)
   
   return (
     <section className='OtherProduct'>

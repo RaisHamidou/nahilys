@@ -1,26 +1,23 @@
-import express from "express"
+import express from "express";
 import "dotenv/config";
 import nodemailer from "nodemailer";
 
-const router = express.Router()
-
-
+const router = express.Router();
 
 router.post("/contact", (req, res) => {
   const name = req.body.name;
   const email = req.body.email;
   const message = req.body.message;
 
-
   const transporter = nodemailer.createTransport({
-            host: "smtp.ionos.fr",
-            port: 465,
-            secure: true,
-            auth: {
-              user: process.env.EMAIL_USER,
-              pass: process.env.EMAIL_PASSWORD,
-            },
-          });
+    host: "smtp.ionos.fr",
+    port: 465,
+    secure: true,
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASSWORD,
+    },
+  });
 
   const mail = {
     from: name,
@@ -40,4 +37,4 @@ router.post("/contact", (req, res) => {
   });
 });
 
-export default router
+export default router;

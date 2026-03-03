@@ -36,7 +36,7 @@ const featuredProducts = products.filter(product =>
     </div>
     <div className="container-selections">
      {
-                        featuredProducts.map((product) =>{
+                        featuredProducts.filter(f=> f.active == true).map((product) =>{
                           return(
                             <ProductCard 
                             key={product.id} 
