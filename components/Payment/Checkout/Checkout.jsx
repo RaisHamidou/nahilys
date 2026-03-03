@@ -79,8 +79,8 @@ const CheckoutForm = () => {
   const [nameValue, setNameValue] = useState();
   const [surnameValue, setSurnameValue] = useState();
   const [emailValue, setEmailValue] = useState(""); // Mis à "" par défaut
-  const [adressValue, setAdressValue] = useState();
-  const [cityValue, setCityValue] = useState();
+  const [adressValue, setAdressValue] = useState("");
+  const [cityValue, setCityValue] = useState("");
   const [countryValue, setCountryValue] = useState();
   const [codePostalValue, setCodePostalValue] = useState();
   const [nameCardValue, setNameCardValue] = useState();
@@ -90,7 +90,6 @@ const CheckoutForm = () => {
 
   // AJOUT : État pour stocker le point relais sélectionné
   const [selectedServicePoint, setSelectedServicePoint] = useState(null);
-
   const route = useRouter();
     const deliveryPrice = 640
   const priceToPay = total+ deliveryPrice
@@ -190,6 +189,7 @@ const ValidateEmail = (email) => {
       return;
     }
  const numCommandeUnique = genererNumeroCommande();
+ const today = DateOfToday()
     try {
       const cardElement = elements.getElement(CardElement);
 
@@ -220,7 +220,7 @@ const ValidateEmail = (email) => {
           country: countryValue,
           products: currentCart,
           delivery:deliveryPrice,
-          date:DateOfToday
+          date:today
         }),
       });
 
@@ -279,7 +279,7 @@ const ValidateEmail = (email) => {
             country: countryValue,
             products: currentCart,
             service_point_id: selectedServicePoint?.id, // AJOUT : Envoi de l'ID du point relais
-            date:DateOfToday,
+            date:today,
           }),
         });
         await axios.post(`${URL}/api/shipments`, {
@@ -294,13 +294,13 @@ const ValidateEmail = (email) => {
   parcel_items: currentCart.map((item) => ({
     description: item.name,
     quantity: item.quantity,
-    weight: "0.5", // Sendcloud exige un poids (ex: 0.5kg)
+    weight: "1", // Sendcloud exige un poids (ex: 0.5kg)
     value: price(item.price)  || price(item.pr) , // Sendcloud exige une valeur monétaire
   })),
   service_point_id: selectedServicePoint?.id 
 });
         clearCart();
-        //route.push("/thank-you");
+        route.push("/thank-you");
       }
     } catch (error) {
       console.error("Erreur lors du paiement:", error);

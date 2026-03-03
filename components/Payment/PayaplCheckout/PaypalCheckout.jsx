@@ -27,10 +27,27 @@ const PaypalCheckout = ({
   const route = useRouter();
   const deliveryPrice = 640
   const priceToPay = total+ deliveryPrice
+const genererNumeroCommande = () => {
+    const timestamp = Date.now().toString(36).toUpperCase();
+    const aleatoire = Math.random().toString(36).substring(2, 5).toUpperCase();
+    return `ORD-${timestamp}-${aleatoire}`;
+  };
+
+    const DateOfToday = () => {
+  const date = new Date();
+  return date.toLocaleDateString("fr-FR", {
+    day: "numeric",
+    month: "short", // "short" donne "févr.", on va juste enlever le point si nécessaire
+    year: "numeric",
+  }).replace('.', ''); // Enlève le point après le mois abrégé
+};
   const handleExpressCheckout = async (event) => {
     if (!stripe || !elements) {
       return;
     }
+
+     const numCommandeUnique = genererNumeroCommande();
+ const today = DateOfToday()
     
     const response = await fetch(`${URL}/api/create-payment`, {
       method: "POST",
@@ -38,7 +55,7 @@ const PaypalCheckout = ({
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-
+            orderId:numCommandeUnique,
             email: email,
             name: name,
             surname:surname,  
@@ -50,7 +67,8 @@ const PaypalCheckout = ({
             codePostal:codePostal, 
             country:country,
             products:currentCart,
-            orderId:orderId
+            date:today
+            
       }),
     });
 
@@ -79,6 +97,7 @@ const PaypalCheckout = ({
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
+            orderId:numCommandeUnique,
             paymentIntentId: paymentIntent.id,
             email: email,
             name: name,
@@ -92,7 +111,7 @@ const PaypalCheckout = ({
             codePostal:codePostal, 
             country:country,
             products:currentCart,
-            orderId:orderId,
+             date:today
            
           }),
         });

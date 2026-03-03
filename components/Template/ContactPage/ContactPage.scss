@@ -75,5 +75,15 @@
         }
         
     }
-    
+    .submit{
+        background-color: black;
+        border:none;
+        border-radius: 50px;
+        font-family: $playfairDisplay;
+        font-style: italic;
+        color: white;
+        padding: 12px 0px;
+        cursor: pointer;
+        margin-top: 30px;
+    }
 }

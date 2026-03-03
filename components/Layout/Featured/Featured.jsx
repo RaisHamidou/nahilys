@@ -31,7 +31,7 @@ export default function Featured() {
 
       <div className="container-description-featured">
         <TitleSection title={"En vedette"}>
-          Collection Signature Alliez sobriété et raffinement avec cette pièce
+          Collection Signature alliez sobriété et raffinement avec cette pièce
           épurée. Sa coupe fluide et ses délicates broderies perlées en font un
           indispensable pour une allure chic et intemporelle. L'incarnation
           parfaite de la simplicité sophistiquée.

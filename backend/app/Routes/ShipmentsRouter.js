@@ -35,9 +35,13 @@ router.post("/shipments", async (req, res) => {
       shippingMethod = "mondial_relay:point-relais";
     }
 
-    // 2. NETTOYAGE DES DONNÉES (Éviter les erreurs 400 de Sendcloud)
-    const cleanAddress = (address || "").substring(0, 31); // Max 32 caractères
-    const cleanHouseNumber = service_point_id ? "1" : ""; // Évite l'erreur house_number > 20 car.
+    let cleanAddress = (address || "").substring(0, 32).trim(); 
+let cleanHouseNumber = service_point_id ? "" : "1"; // Si point relais, on laisse vide
+
+// Correction spécifique : Si la somme dépasse 32, on réduit la rue
+if ((cleanAddress.length + cleanHouseNumber.length) > 32) {
+    cleanAddress = cleanAddress.substring(0, 32 - cleanHouseNumber.length).trim();
+}
 
     // 3. CONSTRUCTION DU COLIS CONFORME API V2
     const envoi = {

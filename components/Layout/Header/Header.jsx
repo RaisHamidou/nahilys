@@ -64,7 +64,7 @@ useEffect(() => {
         <ul className='menu' >
         
         <li><a className={pathName == "/"? "link active":"link"} href='/'>Accueil</a></li>
-          <li><a className={pathName == "/collection"? "link active":"link"} href='/collection'>Collection</a></li>
+          <li><a className={pathName.startsWith("/collection") ?  "link active":"link"} href='/collection'>Collection</a></li>
           <li><a className={pathName == "/a-propos"? "link active":"link"} href='/a-propos'>À propos</a></li>
           <li><a className={pathName == "/contact"? "link active":"link"} href='/contact'>Contact</a></li>
 
