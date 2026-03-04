@@ -109,7 +109,7 @@ export default function PageDetails({ data }) {
             <h4>{price(data.base_price)} €</h4>
           </div>
           
-          <CartCTA Click={()=>alert("test")}  str={"Ajouter au panier"} />
+          <CartCTA Click={()=>addToCart(data, currentColor, currentSize)}  str={"Ajouter au panier"} />
           
           
         </div>

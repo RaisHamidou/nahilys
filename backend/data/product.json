@@ -19,14 +19,21 @@
         "sku": "LAY-BLU-36/38",
         "attributes": { "color": "Bleu Orage", "code_color":"#576976", "size": "36/38" },
         "price_override": null,
-        "inventory_quantity": 2,
+        "inventory_quantity": 1,
         "image":"https://www.nahilys.com/abaya/bleu-orage/1.jpg"
        
       },
-
+ {
+        "sku": "LAY-BLU-36/38",
+        "attributes": { "color": "Bleu Orage", "code_color":"#576976", "size": "38" },
+        "price_override": null,
+        "inventory_quantity": 1,
+        "image":"https://www.nahilys.com/abaya/bleu-orage/1.jpg"
+       
+      },
       {
         "sku": "LAY-BLU-40/43",
-        "attributes": { "color": "Bleu Orage", "code_color":"#576976", "size": "40/43" },
+        "attributes": { "color": "Bleu Orage", "code_color":"#576976", "size": "40" },
         "price_override": null,
         "inventory_quantity": 2,
         "image":"https://www.nahilys.com/abaya/bleu-orage/1.jpg"
@@ -52,7 +59,7 @@
     "variants": [
       {
         "sku": "ABA-MAU-S/M",
-        "attributes": { "color": "Mauve poudré", "code_color":"#DBCFBE", "size": "S/M" },
+        "attributes": { "color": "Mauve poudré", "code_color":"#BEA9A2", "size": "S/M" },
         "price_override": null,
         "inventory_quantity": 2,
         "image":"https://www.nahilys.com/abaya/mauve/1.jpg"
@@ -60,7 +67,7 @@
 
       {
         "sku": "ABA-MAU-L/XL",
-        "attributes": { "color": "Mauve poudré", "code_color":"#DBCFBE", "size": "L/XL" },
+        "attributes": { "color": "Mauve poudré", "code_color":"#BEA9A2", "size": "L/XL" },
         "price_override": null,
         "inventory_quantity": 3,
         "image":"https://www.nahilys.com/abaya/mauve/1.jpg"
@@ -84,18 +91,24 @@
     },
     "variants": [
       {
-        "sku": "SAF-KIM-S/M",
-        "attributes": { "color": "Vert grisé", "code_color":"#4E606B", "size": "S/M" },
+        "sku": "SAF-KIM-36/38",
+        "attributes": { "color": "Vert grisé", "code_color":"#4E606B", "size": "36/38" },
         "price_override": null,
-        "inventory_quantity": 3,
+        "inventory_quantity": 2,
         "image":"https://www.nahilys.com/abaya/vert-grise/1.jpg"
       },
-
-      {
-        "sku": "SAF-KIM-L/XL",
-        "attributes": { "color": "Vert grisé", "code_color":"#4E606B", "size": "L/XL" },
+{
+        "sku": "SAF-KIM-40",
+        "attributes": { "color": "Vert grisé", "code_color":"#4E606B", "size": "40" },
         "price_override": null,
-        "inventory_quantity": 3,
+        "inventory_quantity": 2,
+        "image":"https://www.nahilys.com/abaya/vert-grise/1.jpg"
+      },
+      {
+        "sku": "SAF-KIM-42/44",
+        "attributes": { "color": "Vert grisé", "code_color":"#4E606B", "size": "42/44" },
+        "price_override": null,
+        "inventory_quantity": 2,
         "image":"https://www.nahilys.com/abaya/vert-grise/1.jpg"
       }
     ]
@@ -130,7 +143,7 @@
   {
     "ref":"5",
     "id": "abaya_papillon",
-    "active": true,
+    "active": false,
     "name": "Abaya papillon",
     "description":"<p>Découvrez l'équilibre parfait entre confort absolu et silhouette sophistiquée. Cette robe longue, d'un beige sable intemporel, est la pièce maîtresse idéale pour celles qui recherchent une allure à la fois minimaliste et raffinée.</p> <h3>Une Coupe Ingénieuse</h3> <p>Le secret de ce modèle réside dans sa polyvalence :</p> <ul> <li><span class='label'>Porté Ample :</span> Sans ajustement, elle offre une coupe « oversize » aérienne et fluide, parfaite pour un style décontracté chic ou une allure bohème.</li> <li><span class='label'>Cintrage Intérieur :</span> Grâce à un système de liens discrets à l'intérieur, vous pouvez ajuster la taille à votre convenance. Cela permet de marquer la silhouette de façon subtile tout en conservant le drapé magnifique des manches chauve-souris.</li> </ul> <h3>Les Détails qui font la Différence</h3> <ul> <li><span class='label'>Manches Kimono :</span> Larges et structurées par de larges revers aux poignets pour un tombé impeccable.</li> <li><span class='label'>Encolure Délicate :</span> Un col rond légèrement fendu qui apporte une touche de féminité discrète.</li> <li><span class='label'>Matière Premium :</span> Un tissu fluide qui ne marque pas, offrant un mouvement gracieux à chaque pas.</li> </ul> <h3>Détails & compositions</h3> <ul> <li><span class='label'>Produit :</span> Robe abaya</li> <li><span class='label'>Matière :</span> 100% Polyester fluide (confortable et infroissable)</li> <li><span class='label'>Couleur :</span> Beige sablé / crème</li> <li><span class='label'>Détails :</span> Cintrage intérieur</li> <li><span class='label'>Longueur de l’abaya :</span> 1,37 m</li> </ul>",
     "sub_description":"Taille ajustable",
@@ -187,7 +200,7 @@
     "description":" <p>Sublimez votre garde-robe avec cette abaya , conçue pour celles qui privilégient le raffinement discret.</p> <h3>Caractéristiques principales :</h3> <ul> <li>Coupe kimono fluide : Sa coupe épurée offre une silhouette élancée et un tombé impeccable, alliant confort et allure sophistiquée.</li> <li>Détails Subtils : Le liseré délicat, orné de fines touches scintillantes le long de l'ouverture, apporte juste ce qu'il faut de lumière pour rehausser la couleur du tissu.</li> <li>Polyvalence : Que ce soit pour une occasion spéciale ou pour rehausser votre tenue quotidienne, cette abaya est une pièce maîtresse indémodable.</li> <li>Finition Premium : Confectionnée avec soin pour offrir un drapé luxueux et une sensation de légèreté sur la peau. Cette pièce incarne l'équilibre parfait entre tradition et modernité, faisant d'elle l'indispensable de votre collection.</li> </ul> <h3>Détails & compositions </h3> <ul> <li>Produit : Ensemble abaya ( 2 pieces ) </li> <li>Matière : 100% Polyester fluide (confortable et infroissable) </li> <li>Couleur : noir - marron chocolat - vert kaki - taupe - rose et blanc  </li> <li>Détails : coupe kimono et détails argenté  </li> <li>Longueur de la sous-robe : 1,40 </li> <li>Longueur de l’abaya : 1,38 </li> </ul>",
     "sub_description":"Cristalline",
     "image" : "/abaya/cristalline/1.jpg",
-    "gallery":["https://www.nahilys.com/abaya/cristalline/1.jpg","https://www.nahilys.com/abaya/cristalline/2.jpg","https://www.nahilys.com/abaya/cristalline/3.jpg","https://www.nahilys.com/abaya/cristalline/4.jpg","https://www.nahilys.com/abaya/cristalline/5.jpg","https://www.nahilys.com/abaya/cristalline/6.jpg"],
+    "gallery":["https://www.nahilys.com/abaya/cristalline/1.jpg","https://www.nahilys.com/abaya/cristalline/2.jpg","https://www.nahilys.com/abaya/cristalline/4.jpg","https://www.nahilys.com/abaya/cristalline/5.jpg","https://www.nahilys.com/abaya/cristalline/6.jpg"],
     "slug": "ensemble-abaya-cristalline",
     "base_price": 2990,
     "metadata": {
@@ -210,13 +223,7 @@
         "inventory_quantity": 1,
         "image":"https://www.nahilys.com/abaya/cristalline/2.jpg"
       },
-      {
-        "sku": "EAC-TAU-U",
-        "attributes": { "color": "Taupe", "code_color":"#7C6355", "size": "Unique" },
-        "price_override": null,
-        "inventory_quantity": 1,
-        "image":"https://www.nahilys.com/abaya/cristalline/3.jpg"
-      },
+      
        {
         "sku": "EAC-WHI-U",
         "attributes": { "color": "blanc", "code_color":"#EDEBE7", "size": "Unique" },

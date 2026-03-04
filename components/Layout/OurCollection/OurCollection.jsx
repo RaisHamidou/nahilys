@@ -26,7 +26,7 @@ export default function OurCollection() {
     </TitleSection>
     <div className="container-cards">
     {
-      products.filter(f=> f.active == true).slice(0,6).map((product) =>{
+      products.filter(f=> f.active == true).sort((a,b)=>b.ref-a.ref).slice(0,6).map((product) =>{
         return(
           <ProductCard 
           key={product.id} 

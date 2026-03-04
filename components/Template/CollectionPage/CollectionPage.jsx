@@ -28,7 +28,7 @@ export default function CollectionPage() {
       </div>
       <div className="container-collection">
         {
-              products.filter(f=> f.active == true).map((product) =>{
+              products.filter(f=> f.active == true).sort((a,b)=>b.ref-a.ref).map((product) =>{
                 return(
                   <ProductCard 
                   key={product.id} 
