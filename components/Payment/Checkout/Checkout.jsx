@@ -3,7 +3,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import { FaCalendarDays, FaClock } from "react-icons/fa6";
 import { CiDeliveryTruck } from "react-icons/ci";
-
+import { Elements } from "@stripe/react-stripe-js";
 import axios from "axios";
 import Script from 'next/script'; // <--- AJOUT : Pour charger le widget Sendcloud
 
@@ -70,10 +70,10 @@ const PromoCodeSection = ({ onPromoApplied }) => {
   );
 }; */
 
-const CheckoutForm = () => {
+const CheckoutForm = ({ clientSecret, stripePromise }) => {
   const stripe = useStripe();
   const elements = useElements();
-  const { currentCart, total, clearCart, price, setPromo, isPromoValid, remove } =
+  const { currentCart, total, clearCart, price, setPromo, isPromoValid, remove, deliveryPrice, priceToPay } =
     useContext(MyContext);
 
   const [nameValue, setNameValue] = useState();
@@ -90,9 +90,10 @@ const CheckoutForm = () => {
 
   // AJOUT : État pour stocker le point relais sélectionné
   const [selectedServicePoint, setSelectedServicePoint] = useState(null);
+    const [deliveryMethod, setDeliveryMethod] = useState("colissimo"); // "colissimo" | "mondial_relay"
+
   const route = useRouter();
-    const deliveryPrice = 640
-  const priceToPay = total+ deliveryPrice
+   
 
   const [paymentStatus, setPaymentStatus] = useState(`Payer ${price(price(priceToPay))} €`);
   const [cardError, setCardError] = useState(null);
@@ -170,8 +171,8 @@ const ValidateEmail = (email) => {
       setCardError("Veuillez patienter pendant l'application du code promo");
       return;
     }
-    if (!selectedServicePoint) {
-      setCardError("Veuillez sélectionner un point relais pour continuer.");
+     if (deliveryMethod === "mondial_relay" && !selectedServicePoint) {
+      setCardError("Veuillez sélectionner un point relais Mondial Relay.");
       return;
     }
 
@@ -506,16 +507,42 @@ const ValidateEmail = (email) => {
                 ))}
               </select>
             </div>
+             {/* ✅ AJOUT : Sélecteur méthode de livraison */}
+            <div className="delivery-method-selector">
+              <div
+                className={deliveryMethod === "colissimo" ? "delivery-option active" : "delivery-option"}
+                onClick={() => {
+                  setDeliveryMethod("colissimo");
+                  setSelectedServicePoint(null); // Reset le point relais
+                  setAdressValue(""); // Reset l'adresse pré-remplie par le widget
+                  setCityValue("");   // Reset la ville pré-remplie par le widget
+                }}
+              >
+                <CiDeliveryTruck />
+                <p>Colissimo — Livraison à domicile</p>
+              </div>
 
-            {/* AJOUT : Bouton pour choisir le Point Relais */}
-            <button 
-              type="button" 
-              onClick={openServicePointPicker} 
-              className="relay-btn" 
-              
-            >
-               {selectedServicePoint ? `Point choisi: ${selectedServicePoint.name}` : "Choisir un Point Relais"}
-            </button>
+              <div
+                className={deliveryMethod === "mondial_relay" ? "delivery-option active" : "delivery-option"}
+                onClick={() => setDeliveryMethod("mondial_relay")}
+              >
+                <CiDeliveryTruck />
+                <p>Mondial Relay — Point Relais</p>
+              </div>
+            </div>
+                  {/* ✅ AJOUT : Bouton Point Relais affiché uniquement si Mondial Relay */}
+            {deliveryMethod === "mondial_relay" && (
+              <button
+                type="button"
+                onClick={openServicePointPicker}
+                className="relay-btn"
+              >
+                {selectedServicePoint
+                  ? `Point choisi : ${selectedServicePoint.name}`
+                  : "Choisir un Point Relais"}
+              </button>
+            )}
+          
           </div>
 
           <div className="payment-method-selector">
@@ -542,16 +569,18 @@ const ValidateEmail = (email) => {
               </div>
 
               <div className="paypal-button">
-                <PaypalCheckout
-                orderId={genererNumeroCommande()}
-                  email={emailValue}
-                  name={nameValue}
-                  surname={surnameValue}
-                  address={adressValue}
-                  city={cityValue}
-                  codePostal={codePostalValue}
-                  country={countryValue}
-                />
+                <Elements stripe={stripePromise} options={{ clientSecret }}>
+              <PaypalCheckout
+                email={emailValue}
+                name={nameValue}
+                surname={surnameValue}
+                address={adressValue}
+                city={cityValue}
+                codePostal={codePostalValue}
+                country={countryValue}
+                selectedServicePoint={selectedServicePoint}
+              />
+            </Elements>
                 {invalidFields.length > 0 && (
                   <div
                     onClick={() => setShowAlert(true)}
@@ -594,12 +623,12 @@ const ValidateEmail = (email) => {
                       base: {
                         backgroundColor:"white",
                         iconColor: "#8E8E8E",
-                        color: "#ff4d6d",
+                        color: "#000000",
                         fontWeight: 500,
                         fontFamily: "Roboto, Open Sans, Segoe UI, sans-serif",
                         fontSize: "16px",
                         fontSmoothing: "antialiased",
-                        ":-webkit-autofill": { color: "#ff4d6d" },
+                        ":-webkit-autofill": { color: "#000000" },
                         "::placeholder": { color: "#8E8E8E" },
                       },
                       invalid: {

@@ -7,9 +7,10 @@ export const MyContext = createContext();
 const ContextProvider = ({ children }) => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [currentCart, setCurrentCart] = useState([]);
-
+  
    const total = currentCart.reduce((acc, item) => acc + Number(item.price), 0);
-
+const [deliveryPrice, setDeliveryPrice] = useState(640)
+  const priceToPay = total+ deliveryPrice
   const [refresh, setRefresh] = useState(false);
   const price = (number) => {
     const prx = number / 100;
@@ -27,7 +28,7 @@ const ContextProvider = ({ children }) => {
           : item
       );
     } */
- const addToCart = (product, color, size) => {
+/*  const addToCart = (product, color, size) => {
   const variantId = `${product.id}-${color}-${size}`;
 
   const newCommande = {
@@ -58,8 +59,45 @@ const ContextProvider = ({ children }) => {
     localStorage.setItem("product", JSON.stringify(updatedCart));
     return updatedCart;
   });
-};
+}; */
 
+const addToCart = (product, color, size) => {
+  const variantId = `${product.id}-${color}-${size}`;
+
+  const newCommande = {
+    id: variantId,
+    name: product.name,
+    color: color,
+    size: size,
+    price: product.base_price,
+    img: product.image,
+    quantity: 1,
+  };
+
+  setCurrentCart((prevCart) => {
+    const existingItem = prevCart.find(item => item.id === variantId);
+
+    let updatedCart;
+
+    if (existingItem) {
+      updatedCart = prevCart.map(item =>
+        item.id === variantId
+          ? {
+              ...item,
+              quantity: item.quantity + 1,
+              price: item.unitPrice * (item.quantity + 1),
+            }
+          : item
+      );
+    } else {
+      updatedCart = [...prevCart, { ...newCommande, unitPrice: newCommande.price }];
+    }
+
+    setRefresh(!refresh);
+    localStorage.setItem("product", JSON.stringify(updatedCart));
+    return updatedCart;
+  });
+}; // ✅ accolade fermante de addToCart
 
   useEffect(() => {
     const stored = localStorage.getItem("product");
@@ -83,14 +121,13 @@ const ContextProvider = ({ children }) => {
     localStorage.setItem("product", JSON.stringify(updatedProducts));
     setRefresh(!refresh);
   };
-  const now = Date.now()
-  console.log(new Date(now));
+
 
   //localStorage.clear
 
   return (
     <MyContext.Provider
-      value={{ isCartOpen, setIsCartOpen, price, addToCart, currentCart, total, clearCart,remove }}
+      value={{ isCartOpen, setIsCartOpen, price, addToCart, currentCart, total, clearCart,remove,deliveryPrice, priceToPay }}
     >
       {children}
     </MyContext.Provider>

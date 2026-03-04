@@ -287,13 +287,13 @@ router.post("/confirm-payment", async (req, res) => {
                   <td style="font-family:'Inter',Arial,sans-serif; font-size:12px;
             font-weight:300; color:#777; padding-bottom:8px;">Sous-total</td>
                   <td align="right" style="font-family:'Inter',Arial,sans-serif; font-size:12px;
-            font-weight:300; color:#777; padding-bottom:8px;">${((total-delivery)/100).toFixed(2)} €</td>
+            font-weight:300; color:#777; padding-bottom:8px;"> ${((Number(total) - Number(delivery)) / 100).toFixed(2)} €</td>
                 </tr>
                 <tr>
                   <td style="font-family:'Inter',Arial,sans-serif; font-size:12px;
             font-weight:300; color:#777; padding-bottom:8px;">Livraison</td>
                   <td align="right" style="font-family:'Inter',Arial,sans-serif; font-size:12px;
-            font-weight:300; color:#777; padding-bottom:8px;">${(delivery/100).toFixed(2)} €</td>
+            font-weight:300; color:#777; padding-bottom:8px;">${(Number(delivery)/100).toFixed(2)} €</td>
                 </tr>
                 <tr>
                   <td colspan="2" style="border-top: 1px solid #EBEBEB; padding-top:14px; padding-bottom:24px;">
@@ -549,13 +549,13 @@ router.post("/confirm-payment", async (req, res) => {
                   <td style="font-family:'Inter',Arial,sans-serif; font-size:12px;
             font-weight:300; color:#777; padding-bottom:8px;">Sous-total</td>
                   <td align="right" style="font-family:'Inter',Arial,sans-serif; font-size:12px;
-            font-weight:300; color:#777; padding-bottom:8px;">${((total-delivery)/100).toFixed(2)} €</td>
+            font-weight:300; color:#777; padding-bottom:8px;">$// Version sécurisée ${((Number(total) - Number(delivery)) / 100).toFixed(2)} €</td>
                 </tr>
                 <tr>
                   <td style="font-family:'Inter',Arial,sans-serif; font-size:12px;
             font-weight:300; color:#777; padding-bottom:8px;">Livraison</td>
                   <td align="right" style="font-family:'Inter',Arial,sans-serif; font-size:12px;
-            font-weight:300; color:#777; padding-bottom:8px;">${(delivery/100).toFixed(2)} €</td>
+            font-weight:300; color:#777; padding-bottom:8px;">${(Number(delivery)/100).toFixed(2)} €</td>
                 </tr>
                 <tr>
                   <td colspan="2" style="border-top: 1px solid #EBEBEB; padding-top:14px; padding-bottom:24px;">

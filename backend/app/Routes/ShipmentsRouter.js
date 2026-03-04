@@ -13,6 +13,10 @@ const auth = Buffer.from(
   `${SENDCLOUD_PUBLIC_KEY}:${SENDCLOUD_SECRET_KEY}`
 ).toString("base64");
 
+// ✅ IDs réels récupérés depuis l'API Sendcloud
+const COLISSIMO_HOME_ID = 1066;       // Colissimo Home 1-2kg
+const MONDIAL_RELAY_ID = 28038;       // Mondial Relay Point Relais 1-2kg
+
 router.post("/shipments", async (req, res) => {
   try {
     const {
@@ -27,56 +31,41 @@ router.post("/shipments", async (req, res) => {
       service_point_id
     } = req.body;
 
-    // 1. DÉTERMINER LA MÉTHODE DE LIVRAISON DYNAMIQUE
-    // Si un service_point_id existe, on utilise Mondial Relay, sinon Colissimo Domicile
-    let shippingMethod = "colissimo:home-delivery"; 
-    
-    if (service_point_id) {
-      shippingMethod = "mondial_relay:point-relais";
+    let cleanAddress = (address || "").substring(0, 32).trim();
+    let cleanHouseNumber = service_point_id ? "" : "1";
+
+    if ((cleanAddress.length + cleanHouseNumber.length) > 32) {
+      cleanAddress = cleanAddress.substring(0, 32 - cleanHouseNumber.length).trim();
     }
 
-    let cleanAddress = (address || "").substring(0, 32).trim(); 
-let cleanHouseNumber = service_point_id ? "" : "1"; // Si point relais, on laisse vide
-
-// Correction spécifique : Si la somme dépasse 32, on réduit la rue
-if ((cleanAddress.length + cleanHouseNumber.length) > 32) {
-    cleanAddress = cleanAddress.substring(0, 32 - cleanHouseNumber.length).trim();
-}
-
-    // 3. CONSTRUCTION DU COLIS CONFORME API V2
     const envoi = {
       parcel: {
-        order_number: order_number, // Ton ID unique (ex: ORD-LZM3X8JZ-A7K)
-        name: name,
+        order_number,
+        name,
         address: cleanAddress,
         house_number: cleanHouseNumber,
-        city: city,
-        postal_code: postal_code,
-        country: country,
-        email: email,
-        
+        city,
+        postal_code,
+        country,
+        email,
+
         // Liaison point relais si applicable
         ...(service_point_id && { to_service_point: parseInt(service_point_id, 10) }),
 
-        // Articles du colis
         parcel_items: parcel_items.map((item) => ({
           description: item.description,
           quantity: parseInt(item.quantity, 10),
-          weight: parseFloat(item.weight) || 0.5, // Poids par défaut 500g
-          value: item.value, 
+          weight: parseFloat(item.weight) || 0.5,
+          value: item.value,
         })),
 
-        // Sélection dynamique du transporteur
-        ship_with: {
-          type: "shipping_option_code",
-          properties: {
-            shipping_option_code: shippingMethod,
-          },
+        // ✅ ID numérique au lieu de shipping_option_code
+        shipment: {
+          id: service_point_id ? MONDIAL_RELAY_ID : COLISSIMO_HOME_ID,
         },
       },
     };
 
-    // 4. APPEL À L'API SENDCLOUD
     const response = await axios.post(
       "https://panel.sendcloud.sc/api/v2/parcels",
       envoi,
@@ -101,7 +90,6 @@ if ((cleanAddress.length + cleanHouseNumber.length) > 32) {
     });
 
   } catch (error) {
-    // Log détaillé pour débugger en cas de souci
     console.error(
       "❌ Erreur API Sendcloud :",
       JSON.stringify(error.response?.data || error.message, null, 2)

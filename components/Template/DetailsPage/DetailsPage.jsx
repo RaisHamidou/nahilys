@@ -27,8 +27,16 @@ export default function PageDetails({ data }) {
   const [currentColor, setCurrentColor] = useState(uniqueColors[0].name);
   const [currentSize, setCurrentSize] = useState(uniqueSizes[0]);
   let [quantity, setQuantity]= useState(0)
+  const [status, setStatus] = useState("Ajouter au panier")
   const { price, addToCart } = useContext(MyContext);
 
+const handleChangestatus = ()=>{
+setStatus("Article ajouté")
+
+  setTimeout(() => {
+    setStatus("Ajouter au panier")
+  }, 1500);
+}
   
 
   return (
@@ -87,7 +95,10 @@ export default function PageDetails({ data }) {
               })}
             </div>
             <div className="no-sticky-cart">
-             <CartCTA Click={()=>addToCart(data, currentColor, currentSize)}  str={"Ajouter au panier"} />
+             <CartCTA Click={()=>{
+              addToCart(data, currentColor, currentSize)
+              handleChangestatus()
+              }}  str={status} />
           </div>
           </div>
           

@@ -583,6 +583,10 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     justify-content: center;
     gap: 20px;
     width: 60%;
+    @media screen and (max-width:567px) {
+      width: 80%;
+      gap: 10px;
+    }
     .payment-option{
         border: #d9d9d9 solid 1px;
         font-family: $playfairDisplay;
@@ -596,6 +600,9 @@ input[type="time"]::-webkit-calendar-picker-indicator {
         justify-content: center;
         background-color: #ffffff;
     border: #d9d9d9 solid 1px;
+    @media screen and (max-width:425px) {
+      font-size: 0.8rem !important;
+    }
     }
     .active{
         border :1px solid $gold;
@@ -604,73 +611,8 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     }
 }
 
-.relay-points-section {
-  margin: 20px 0;
-  padding: 20px;
-  border: 2px solid #f0f0f0;
-  border-radius: 12px;
-  background: #fafafa;
-}
 
-.relay-checkbox {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-weight: 500;
-  cursor: pointer;
-  margin-bottom: 15px;
-}
 
-.relay-checkbox input {
-  width: 20px;
-  height: 20px;
-}
-
-.relay-points-list {
-  max-height: 300px;
-  overflow-y: auto;
-}
-
-.relay-points-list p {
-  margin: 0 0 15px 0;
-  font-weight: 500;
-  color: #333;
-}
-
-.relay-point {
-  padding: 15px;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  margin: 8px 0;
-  cursor: pointer;
-  transition: all 0.2s;
-  background: white;
-}
-
-.relay-point:hover,
-.relay-point.selected {
-  border-color: #ff4d6d;
-  background: #fff5f8;
-  box-shadow: 0 4px 12px rgba(255, 77, 109, 0.15);
-}
-
-.relay-name {
-  font-weight: 600;
-  margin-bottom: 4px;
-}
-
-.relay-address {
-  color: #666;
-  font-size: 14px;
-}
-
-.no-relays {
-  color: #999;
-  font-style: italic;
-  padding: 10px;
-  background: #f9f9f9;
-  border-radius: 6px;
-}
 
 .relay-btn{
   background: #96154A;
@@ -685,4 +627,97 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   border: none;
   cursor: pointer;
   font-size: 16px;
+
+  @media screen and (max-width:425px) {
+      font-size: 0.8rem !important;
+    }
+}
+
+/* ===== DELIVERY METHOD SELECTOR ===== */
+.delivery-method-selector {
+  display: flex;
+  gap: 12px;
+  margin: 16px 0;
+  width: 100%;
+}
+
+.delivery-option {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px 12px;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  background-color: #fff;
+  text-align: center;
+  user-select: none;
+}
+
+.delivery-option svg {
+  font-size: 28px;
+  color: #8E8E8E;
+  transition: color 0.25s ease;
+}
+
+.delivery-option p {
+  font-size: 13px;
+  font-weight: 500;
+  color: #555;
+  margin: 0;
+  transition: color 0.25s ease;
+}
+
+/* Hover */
+.delivery-option:hover {
+  border-color: #aaa;
+  background-color: #f9f9f9;
+}
+
+/* ✅ État actif — option sélectionnée */
+.delivery-option.active {
+  border-color: #000;
+  background-color: #000;
+}
+
+.delivery-option.active svg {
+  color: #fff;
+}
+
+.delivery-option.active p {
+  color: #fff;
+  font-weight: 600;
+}
+
+/* ===== BOUTON POINT RELAIS ===== */
+.relay-btn {
+  width: 100%;
+  padding: 13px 16px;
+  margin-top: 4px;
+  border: 2px dashed #000;
+  border-radius: 10px;
+  background-color: transparent;
+  color: #000;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-align: center;
+}
+
+.relay-btn:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+/* Quand un point est déjà sélectionné */
+.relay-btn.point-selected {
+  border-style: solid;
+  background-color: #f0fff0;
+  border-color: #2e7d32;
+  color: #2e7d32;
 }

@@ -2,7 +2,7 @@
   .card-cart-container {
     display: flex;
     width: 80%;
-    height: 100%;
+    height: auto;
     position: relative;
     margin: 20px auto 0px;
 
@@ -34,13 +34,20 @@
     width: 50%;
     //margin-left: 10px;
     margin: 10px 0px 0px 10px;
-
-    card-cart-title {
+@media screen and (max-width: 425px) {
+          margin-top: 0;
+        }
+    .cart-card-title {
       @media screen and (max-width: 1024px) {
         font-size: 0.9rem;
+        
+      }
+      @media screen and (max-width:381px) {
+        font-size: 0.8rem !important;
+        
       }
       @media screen and (max-width: 375px) {
-        font-size: 0.7rem !important;
+        font-size: 0.8rem !important;
       }
     }
     .description {
@@ -48,6 +55,7 @@
       font-size: 0.7rem;
       font-family: $inter;
       margin-top: 10px;
+      white-space: nowrap;
       span {
         color: #4b4a4a;
       }
@@ -64,7 +72,9 @@
       align-items: center;
       justify-content: space-between;
       width: 63%;
-
+@media screen and (max-width: 425px) {
+          bottom: 0;
+        }
       .remove-btn {
         font-family: $montserrat;
         color: #757575;
@@ -73,7 +83,7 @@
         border: none;
         background-color: transparent;
         cursor: pointer;
-
+        
         @media screen and (max-width: 320px) {
           font-size: 0.5rem;
         }
