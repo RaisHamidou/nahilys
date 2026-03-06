@@ -9,11 +9,11 @@ import { MyContext } from "../../../context/ContextProvider";
 export default function PageDetails({ data }) {
 
 
-  const uniqueSizes = [...new Set(data.variants.map((v) => v.attributes.size))];
+  const uniqueSizes = [...new Set(data?.variants.map((v) => v.attributes.size))];
 
   const uniqueColors = Array.from(
     new Map(
-      data.variants.map(v=>[
+      data?.variants.map(v=>[
         v.attributes.color,
         {
           name:v.attributes.color,
@@ -24,7 +24,7 @@ export default function PageDetails({ data }) {
   )
   
 
-  const [currentColor, setCurrentColor] = useState(uniqueColors[0].name);
+  const [currentColor, setCurrentColor] = useState(uniqueColors[0]?.name);
   const [currentSize, setCurrentSize] = useState(uniqueSizes[0]);
   let [quantity, setQuantity]= useState(0)
   const [status, setStatus] = useState("Ajouter au panier")
@@ -45,10 +45,10 @@ setStatus("Article ajouté")
         <div className="img-detail-product">
           
              {
-            data.gallery.map((image, index) =>{
+            data?.gallery.map((image, index) =>{
               return(
               <div key={index}  className="img-pr">
-                <img src={image} alt={data.name} />
+                <img src={image} alt={data?.name} />
                    </div>
               )
             })
@@ -59,19 +59,19 @@ setStatus("Article ajouté")
         <div className="details">
           <div className="container-details">
           <div className="detail-title">
-            <h1>{data.name}</h1>
+            <h1>{data?.name}</h1>
           </div>
           <div className="details-price">
-            <h2>{`${price(data.base_price)} €`}</h2>
+            <h2>{`${price(data?.base_price)} €`}</h2>
           </div>
           <div className="config">
             <h2>Couleur</h2>
             <div className="container-squares">
             {uniqueColors.map((color,index)=>{
               return(
-                <div onClick={()=> setCurrentColor(color.name)} 
-                key={index} style={{ background: color.color }} 
-                className={currentColor == color.name 
+                <div onClick={()=> setCurrentColor(color?.name)} 
+                key={index} style={{ background: color?.color }} 
+                className={currentColor == color?.name 
                 ?"square color active"
                 :"square color"} />
               )
@@ -106,7 +106,7 @@ setStatus("Article ajouté")
           
             <h2 className="details-description-title">Description</h2>
             <ReactMarkdown rehypePlugins={[rehypeRaw]}>
-                {data.description}
+                {data?.description}
             </ReactMarkdown>
             
           </div>
@@ -116,8 +116,8 @@ setStatus("Article ajouté")
         
         <div className="sticky-cart">
           <div className="sticky-details">
-            <h3>{data.name}</h3>
-            <h4>{price(data.base_price)} €</h4>
+            <h3>{data?.name}</h3>
+            <h4>{price(data?.base_price)} €</h4>
           </div>
           
           <CartCTA Click={()=>addToCart(data, currentColor, currentSize)}  str={"Ajouter au panier"} />
@@ -126,7 +126,7 @@ setStatus("Article ajouté")
         </div>
       </div>
       <div className="Other-product">
-        <OtherProduct id={data.id} />
+        <OtherProduct id={data?.id} />
       </div>
     </div>
   );

@@ -90,7 +90,7 @@ const CheckoutForm = ({ clientSecret, stripePromise }) => {
 
   // AJOUT : État pour stocker le point relais sélectionné
   const [selectedServicePoint, setSelectedServicePoint] = useState(null);
-    const [deliveryMethod, setDeliveryMethod] = useState("colissimo"); // "colissimo" | "mondial_relay"
+    const [deliveryMethod, setDeliveryMethod] = useState("mondial_relay"); // "colissimo" | "mondial_relay"
 
   const route = useRouter();
    
@@ -114,25 +114,7 @@ const CheckoutForm = ({ clientSecret, stripePromise }) => {
     setPaymentStatus(`Payer ${price(priceToPay)} €`);
   }, [total]);
 
-  const handlePromoApplied = async (promoCode) => {
-    // DÉSACTIVER Stripe pendant la validation du promo
-    setStripeEnabled(false);
 
-    try {
-      // Attendre un peu pour s'assurer que Stripe est désactivé
-      await new Promise((resolve) => setTimeout(resolve, 100));
-
-      // Appliquer le promo
-      setPromo(promoCode);
-
-      // Attendre que le contexte soit mis à jour
-      await new Promise((resolve) => setTimeout(resolve, 200));
-    } finally {
-      // RÉACTIVER Stripe et forcer la recréation des éléments
-      setStripeEnabled(true);
-      setFormKey((prev) => prev + 1);
-    }
-  };
 
   // AJOUT : Fonction pour ouvrir le widget Sendcloud
   const openServicePointPicker = () => {
@@ -200,33 +182,6 @@ const ValidateEmail = (email) => {
         return;
       }
 
-
-      const response = await fetch(`${URL}/api/create-payment`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          orderId:numCommandeUnique,
-          amount: priceToPay,
-          currentTotal: priceToPay,
-          total: priceToPay,
-          name: nameValue,
-          surname: surnameValue,
-          cardName: nameCardValue,
-          email: emailValue,
-          address: adressValue,
-          city: cityValue,
-          codePostal: codePostalValue,
-          country: countryValue,
-          products: currentCart,
-          delivery:deliveryPrice,
-          date:today
-        }),
-      });
-
-      const { clientSecret } = await response.json();
-
       const { error, paymentIntent } = await stripe.confirmCardPayment(
         clientSecret,
         {
@@ -258,7 +213,7 @@ const ValidateEmail = (email) => {
         setPaymentStatus("Paiement réussi !");
         const productIds = currentCart.map((product) => product.id);
 
-        await fetch(`${URL}/api/confirm-payment`, {
+     const confirm= await fetch(`${URL}/api/confirm-payment`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -283,23 +238,26 @@ const ValidateEmail = (email) => {
             date:today,
           }),
         });
-        await axios.post(`${URL}/api/shipments`, {
-           order_number: numCommandeUnique,
-  name: `${surnameValue} ${nameValue}`,
-  address: adressValue,
-  city: cityValue,
-  postal_code: codePostalValue,
-  country: countryValue,
-  email: emailValue,
-  // On transforme les items pour ajouter le poids et la valeur par défaut
-  parcel_items: currentCart.map((item) => ({
-    description: item.name,
-    quantity: item.quantity,
-    weight: "1", // Sendcloud exige un poids (ex: 0.5kg)
-    value: price(item.price)  || price(item.pr) , // Sendcloud exige une valeur monétaire
-  })),
-  service_point_id: selectedServicePoint?.id 
-});
+   if(!confirm.ok) return;
+    const shipRes = await fetch(`${URL}/api/shipments`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        order_number: numCommandeUnique,
+        name: `${surname} ${name}`,
+        address, city,
+        postal_code: codePostal,
+        country, email,
+        parcel_items: currentCart.map(item => ({
+          description: item.name,
+          quantity: item.quantity,
+          weight: "0.2",
+          value: price(item.price / item.quantity),
+        })),
+        service_point_id: selectedServicePoint?.id,
+      }),
+    });
+    if(!shipRes.ok) return
         clearCart();
         route.push("/thank-you");
       }
@@ -319,6 +277,7 @@ const ValidateEmail = (email) => {
     ville: !cityValue,
     CodePostal: !codePostalValue,
     pays: !countryValue,
+    pointRelais: !selectedServicePoint,
   };
 
   const invalidFields = Object.keys(fields).filter((key) => fields[key]);
@@ -333,6 +292,8 @@ const ValidateEmail = (email) => {
         setIsInvalid(`Veuillez nous donner vos disponibilité`);
       } else if (invalidFields.includes("time")) {
         setIsInvalid(`Veuillez nous donner vos disponibilité`);
+      }else if(!selectedServicePoint){
+        setIsInvalid(`Veuillez sélectionner un point relais`);
       } else {
         setIsInvalid(`Veuillez remplir le champ ${invalidFields[0]}`);
       }
@@ -508,7 +469,7 @@ const ValidateEmail = (email) => {
               </select>
             </div>
              {/* ✅ AJOUT : Sélecteur méthode de livraison */}
-            <div className="delivery-method-selector">
+         {/*    <div className="delivery-method-selector">
               <div
                 className={deliveryMethod === "colissimo" ? "delivery-option active" : "delivery-option"}
                 onClick={() => {
@@ -529,9 +490,9 @@ const ValidateEmail = (email) => {
                 <CiDeliveryTruck />
                 <p>Mondial Relay — Point Relais</p>
               </div>
-            </div>
-                  {/* ✅ AJOUT : Bouton Point Relais affiché uniquement si Mondial Relay */}
-            {deliveryMethod === "mondial_relay" && (
+            </div> */}
+                 { /* ✅ AJOUT : Bouton Point Relais affiché uniquement si Mondial Relay */ }
+           {/*  {deliveryMethod === "mondial_relay" && (
               <button
                 type="button"
                 onClick={openServicePointPicker}
@@ -541,7 +502,16 @@ const ValidateEmail = (email) => {
                   ? `Point choisi : ${selectedServicePoint.name}`
                   : "Choisir un Point Relais"}
               </button>
-            )}
+            )} */}
+            {/* AJOUT : Bouton pour choisir le Point Relais */}
+            <button 
+              type="button" 
+              onClick={openServicePointPicker} 
+              className="relay-btn" 
+
+            >
+               {selectedServicePoint ? `Point choisi: ${selectedServicePoint.name}` : "Choisir un Point Relais"}
+            </button>
           
           </div>
 
@@ -569,6 +539,7 @@ const ValidateEmail = (email) => {
               </div>
 
               <div className="paypal-button">
+              
                 <Elements stripe={stripePromise} options={{ clientSecret }}>
               <PaypalCheckout
                 email={emailValue}
@@ -579,6 +550,7 @@ const ValidateEmail = (email) => {
                 codePostal={codePostalValue}
                 country={countryValue}
                 selectedServicePoint={selectedServicePoint}
+                clientSecret={clientSecret}
               />
             </Elements>
                 {invalidFields.length > 0 && (

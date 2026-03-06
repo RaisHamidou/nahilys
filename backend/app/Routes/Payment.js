@@ -5,14 +5,26 @@ import nodemailer from "nodemailer";
 
 import axios from "axios";
 import product from "../../data/product.json" with {type:"json"}
-
+import { db } from "../lib/firebase.js";
 const router = express.Router();
 // Instanciez Stripe avec la clé secrète
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 router.post("/create-payment", async (req, res) => {
-  const { amount, email, name, surname, nameCard, address, city, codePostal, country } = req.body;
+  const {  email, name, surname, nameCard, address, city, codePostal, country, items, products, delivery } = req.body;
+
   try {
+    
+  const prices = await Promise.all(
+  items.map(async (item) => {
+    const doc = await db.collection("products").doc(item.id).get();
+    if (!doc.exists) throw new Error(`Produit ${item.id} introuvable`);
+    return doc.data().base_price * item.quantity; // ✅
+  })
+); 
+
+
+const amount = prices.reduce((sum, p) => sum + p, 0) + Number(delivery); 
     const customer = await stripe.customers.create({
       email: email,
       name: `${surname} ${name}`,
@@ -549,7 +561,7 @@ router.post("/confirm-payment", async (req, res) => {
                   <td style="font-family:'Inter',Arial,sans-serif; font-size:12px;
             font-weight:300; color:#777; padding-bottom:8px;">Sous-total</td>
                   <td align="right" style="font-family:'Inter',Arial,sans-serif; font-size:12px;
-            font-weight:300; color:#777; padding-bottom:8px;">$// Version sécurisée ${((Number(total) - Number(delivery)) / 100).toFixed(2)} €</td>
+            font-weight:300; color:#777; padding-bottom:8px;">${((Number(total) - Number(delivery)) / 100).toFixed(2)} €</td>
                 </tr>
                 <tr>
                   <td style="font-family:'Inter',Arial,sans-serif; font-size:12px;

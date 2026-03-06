@@ -66,6 +66,7 @@ const addToCart = (product, color, size) => {
 
   const newCommande = {
     id: variantId,
+    firestoreId: product.id,
     name: product.name,
     color: color,
     size: size,

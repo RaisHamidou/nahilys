@@ -19,7 +19,8 @@ const PaypalCheckout = ({
   codePostal,
   country,
   orderId,
-  selectedServicePoint
+  selectedServicePoint,
+  clientSecret
 }) => {
   const stripe = useStripe();
   const elements = useElements();
@@ -50,49 +51,7 @@ const genererNumeroCommande = () => {
      const numCommandeUnique = genererNumeroCommande();
  const today = DateOfToday()
     
-    const response = await fetch(`${URL}/api/create-payment`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-            /* orderId:numCommandeUnique,
-            email: email,
-            name: name,
-            surname:surname,  
-            productIds: currentCart.map((product) => product.id),
-            amount:priceToPay, 
-            total:total,
-            address:address, 
-            city:city, 
-            codePostal:codePostal, 
-            country:country,
-            products:currentCart,
-            date:today */
-
-
-            orderId: numCommandeUnique,
-            //paymentIntentId: paymentIntent.id,
-            email: email,
-            name: name,
-            surname: surname,
-            product: currentCart.map((product) => product.id),
-            amount: priceToPay,
-            currentTotal: priceToPay,
-            total: priceToPay,
-            delivery:deliveryPrice,
-            address: address,
-            city: city,
-            codePostal: codePostal,
-            country: country,
-            products: currentCart,
-            service_point_id: selectedServicePoint?.id, // AJOUT : Envoi de l'ID du point relais
-            date:today,
-            
-      }),
-    });
-
-    const { clientSecret } = await response.json();
+    
     try {
       const { error, paymentIntent } = await stripe.confirmPayment({
         clientSecret,
@@ -112,7 +71,7 @@ const genererNumeroCommande = () => {
         alert("Une erreur est survenue lors du paiement.");
       } else if (paymentIntent?.status === "succeeded") {
         
-        await fetch(`${URL}/api/confirm-payment`, {
+      const confirm =  await fetch(`${URL}/api/confirm-payment`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -135,23 +94,26 @@ const genererNumeroCommande = () => {
            
           }),
         });
-        await axios.post(`${URL}/api/shipments`, {
-           order_number: numCommandeUnique,
-  name: `${surname} ${name}`,
-  address: address,
-  city: city,
-  postal_code: codePostal,
-  country: country,
-  email: email,
-  // On transforme les items pour ajouter le poids et la valeur par défaut
-  parcel_items: currentCart.map((item) => ({
-    description: item.name,
-    quantity: item.quantity,
-    weight: "0.2", // Sendcloud exige un poids (ex: 0.5kg)
-    value: price(item.price /item.quantity)  || price(item.price /item.quantity), // Sendcloud exige une valeur monétaire
-  })),
-  service_point_id: selectedServicePoint?.id 
-});
+        if(!confirm.ok) return;
+    const shipRes = await fetch(`${URL}/api/shipments`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        order_number: numCommandeUnique,
+        name: `${surname} ${name}`,
+        address, city,
+        postal_code: codePostal,
+        country, email,
+        parcel_items: currentCart.map(item => ({
+          description: item.name,
+          quantity: item.quantity,
+          weight: "0.2",
+          value: price(item.price / item.quantity),
+        })),
+        service_point_id: selectedServicePoint?.id,
+      }),
+    });
+    if(!shipRes.ok) return
         route.push("/thank-you");
         clearCart();
       }

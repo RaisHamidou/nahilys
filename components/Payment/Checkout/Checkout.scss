@@ -312,6 +312,7 @@
     position: absolute;
     top: 0;
     cursor: pointer;
+    
   }
 }
 .alerte {
@@ -698,20 +699,23 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   width: 100%;
   padding: 13px 16px;
   margin-top: 4px;
-  border: 2px dashed #000;
+  border: 2px dashed #d4d4d4;
   border-radius: 10px;
   background-color: transparent;
-  color: #000;
+  color: #5f5f5f;
   font-size: 14px;
-  font-weight: 600;
+  //font-weight: 600;
   cursor: pointer;
   transition: all 0.25s ease;
   text-align: center;
+  background-color: white;
 }
 
 .relay-btn:hover {
-  background-color: #000;
+  background-color: #96154A;
   color: #fff;
+  border: 2px dashed #96154A;
+   
 }
 
 /* Quand un point est déjà sélectionné */

@@ -9,33 +9,47 @@ import { URL } from "../../Config/Config";
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
 
 const PaymentComponents = () => {
-  const { total, priceToPay } = useContext(MyContext);
+  const { currentCart, deliveryPrice } = useContext(MyContext);
   const [clientSecret, setClientSecret] = useState(null);
 
-const amount = total > 0 && priceToPay > 0 ? priceToPay : total;
-
-
   useEffect(() => {
-    if (!amount || amount < 1) return;
+    if (!currentCart || currentCart.length === 0) return;
+    if (clientSecret) return;
+
+    // ✅ items calculé DANS le useEffect
+    const items = currentCart.map(item => ({
+      id: item.firestoreId,
+      quantity: item.quantity,
+    }));
+
+    console.log("Items envoyés:", items);
+    console.log("Delivery:", deliveryPrice);
 
     fetch(`${URL}/api/create-payment`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ amount: Number(amount) }),
+      body: JSON.stringify({
+        items,
+        delivery: deliveryPrice || 0,
+      }),
     })
-      .then((res) => res.json())
-      .then((data) => setClientSecret(data.clientSecret))
+      .then(res => res.json())
+      .then(data => {
+        console.log("Réponse:", data);
+        setClientSecret(data.clientSecret);
+      })
       .catch(console.error);
-  }, [amount]);
+
+  }, [currentCart]); // ✅ se relance quand le cart est chargé
 
   if (!clientSecret) return <p>Chargement du paiement…</p>;
 
   return (
     <Elements stripe={stripePromise} options={{ clientSecret }}>
-      {/* ✅ On passe clientSecret et stripePromise en props */}
       <CheckoutForm clientSecret={clientSecret} stripePromise={stripePromise} />
     </Elements>
   );
 };
+
 
 export default PaymentComponents;

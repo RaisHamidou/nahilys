@@ -15,7 +15,7 @@ export async function generateMetadata  ({params}){
   )
   return {
     title:posts[0]?.seo_title,
-    description: posts[0].metadata?.seo_description,
+    description: posts[0]?.metadata?.seo_description,
   }
 }
 
@@ -30,7 +30,7 @@ export default async function page({params}) {
     }
   }) 
 
-const products = posts[0]
+const products = posts
 
   return (
 
