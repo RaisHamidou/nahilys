@@ -28,6 +28,7 @@ const PaypalCheckout = ({
 
   const route = useRouter();
 
+  
 console.log(deliveryPrice)
 const genererNumeroCommande = () => {
     const timestamp = Date.now().toString(36).toUpperCase();
@@ -98,20 +99,22 @@ const genererNumeroCommande = () => {
     const shipRes = await fetch(`${URL}/api/shipments`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        order_number: numCommandeUnique,
-        name: `${surname} ${name}`,
-        address, city,
-        postal_code: codePostal,
-        country, email,
-        parcel_items: currentCart.map(item => ({
-          description: item.name,
-          quantity: item.quantity,
-          weight: "0.2",
-          value: price(item.price / item.quantity),
-        })),
-        service_point_id: selectedServicePoint?.id,
-      }),
+            body: JSON.stringify({
+  order_number: numCommandeUnique,
+  name: `${surname} ${name}`,
+  address: address,       // ✅ clé API correcte
+  city: city,            // ✅
+  postal_code: codePostal,
+  country: country,      // ✅ code ISO 2 lettres ex: "FR"
+  email: email,          // ✅
+  parcel_items: currentCart.map(item => ({
+    description: item.name,
+    quantity: item.quantity,
+    weight: "0.2",
+    value: price(item.price / item.quantity),
+  })),
+  service_point_id: selectedServicePoint?.id,
+}),
     });
     if(!shipRes.ok) return
         route.push("/thank-you");

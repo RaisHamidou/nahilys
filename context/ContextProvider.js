@@ -128,7 +128,7 @@ const addToCart = (product, color, size) => {
 
   return (
     <MyContext.Provider
-      value={{ isCartOpen, setIsCartOpen, price, addToCart, currentCart, total, clearCart,remove,deliveryPrice, priceToPay }}
+      value={{ isCartOpen, setIsCartOpen, price, addToCart, currentCart, total, clearCart,remove,deliveryPrice, priceToPay, setDeliveryPrice }}
     >
       {children}
     </MyContext.Provider>

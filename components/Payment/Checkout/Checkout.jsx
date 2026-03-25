@@ -24,56 +24,12 @@ const genererNumeroCommande = () => {
     return `ORD-${timestamp}-${aleatoire}`;
   };
 
-/* // Composant séparé pour le code promo avec gestion d'état local
-const PromoCodeSection = ({ onPromoApplied }) => {
-  const { promo, isPromoValid } = useContext(MyContext);
-  const [isApplying, setIsApplying] = useState(false);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const promoCode = e.target.promoInput.value.trim();
-
-    if (!promoCode) return;
-
-    setIsApplying(true);
-   
-    try {
-      // Désactiver Stripe pendant l'application du promo
-      await onPromoApplied(promoCode);
-    } finally {
-      setIsApplying(false);
-    }
-  };
-
-  return (
-    <form onSubmit={handleSubmit} className="form-promo">
-      {promo ? (
-        isPromoValid ? (
-          <p>Code promo appliqué !</p>
-        ) : (
-          <p>Votre code promo est expiré ou invalide</p>
-        )
-      ) : null}
-
-      <div className="container-form-promo">
-        <input
-          name="promoInput"
-          className="input-promo"
-          placeholder="Entrez votre code promo"
-          disabled={isApplying}
-        />
-        <button type="submit" disabled={isApplying}>
-          {isApplying ? "Application..." : "Validé"}
-        </button>
-      </div>
-    </form>
-  );
-}; */
 
 const CheckoutForm = ({ clientSecret, stripePromise }) => {
   const stripe = useStripe();
   const elements = useElements();
-  const { currentCart, total, clearCart, price, setPromo, isPromoValid, remove, deliveryPrice, priceToPay } =
+  const { currentCart, total, clearCart, price, setPromo, isPromoValid, remove, deliveryPrice,setDeliveryPrice, priceToPay } =
     useContext(MyContext);
 
   const [nameValue, setNameValue] = useState();
@@ -100,6 +56,10 @@ const CheckoutForm = ({ clientSecret, stripePromise }) => {
   const [paymentMethod, setPaymentMethod] = useState("card");
   const [stripeEnabled, setStripeEnabled] = useState(true); // NOUVEAU STATE
   const [formKey, setFormKey] = useState(0);
+
+  useEffect(()=>{
+    deliveryMethod === "mondial_relay" ? setDeliveryPrice(399) :setDeliveryPrice(599)
+  },[deliveryMethod])
 
   const DateOfToday = () => {
   const date = new Date();
@@ -243,19 +203,22 @@ const ValidateEmail = (email) => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        order_number: numCommandeUnique,
-        name: `${surname} ${name}`,
-        address, city,
-        postal_code: codePostal,
-        country, email,
-        parcel_items: currentCart.map(item => ({
-          description: item.name,
-          quantity: item.quantity,
-          weight: "0.2",
-          value: price(item.price / item.quantity),
-        })),
-        service_point_id: selectedServicePoint?.id,
-      }),
+  order_number: numCommandeUnique,
+  name: `${surnameValue} ${nameValue}`,
+  address: adressValue,       // ✅ clé API correcte
+  city: cityValue,            // ✅
+  postal_code: codePostalValue,
+  country: countryValue,      // ✅ code ISO 2 lettres ex: "FR"
+  email: emailValue,          // ✅
+  parcel_items: currentCart.map(item => ({
+    description: item.name,
+    quantity: item.quantity,
+    weight: "0.2",
+    value: price(item.price / item.quantity),
+  })),
+  service_point_id: selectedServicePoint?.id,
+}),
+
     });
     if(!shipRes.ok) return
         clearCart();
@@ -277,7 +240,7 @@ const ValidateEmail = (email) => {
     ville: !cityValue,
     CodePostal: !codePostalValue,
     pays: !countryValue,
-    pointRelais: !selectedServicePoint,
+    pointRelais:  deliveryMethod === "mondial_relay" && !selectedServicePoint,
   };
 
   const invalidFields = Object.keys(fields).filter((key) => fields[key]);
@@ -292,9 +255,10 @@ const ValidateEmail = (email) => {
         setIsInvalid(`Veuillez nous donner vos disponibilité`);
       } else if (invalidFields.includes("time")) {
         setIsInvalid(`Veuillez nous donner vos disponibilité`);
-      }else if(!selectedServicePoint){
-        setIsInvalid(`Veuillez sélectionner un point relais`);
-      } else {
+      }else if (deliveryMethod === "mondial_relay" && !selectedServicePoint) {
+  // Avec la correction du fields, ce cas ne devrait plus arriver en Colissimo
+  setIsInvalid(`Veuillez sélectionner un point relais`);
+} else {
         setIsInvalid(`Veuillez remplir le champ ${invalidFields[0]}`);
       }
     } else if (invalidFields.length > 1) {
@@ -469,7 +433,7 @@ const ValidateEmail = (email) => {
               </select>
             </div>
              {/* ✅ AJOUT : Sélecteur méthode de livraison */}
-         {/*    <div className="delivery-method-selector">
+             <div className="delivery-method-selector">
               <div
                 className={deliveryMethod === "colissimo" ? "delivery-option active" : "delivery-option"}
                 onClick={() => {
@@ -490,9 +454,9 @@ const ValidateEmail = (email) => {
                 <CiDeliveryTruck />
                 <p>Mondial Relay — Point Relais</p>
               </div>
-            </div> */}
+            </div> 
                  { /* ✅ AJOUT : Bouton Point Relais affiché uniquement si Mondial Relay */ }
-           {/*  {deliveryMethod === "mondial_relay" && (
+             {deliveryMethod === "mondial_relay" && (
               <button
                 type="button"
                 onClick={openServicePointPicker}
@@ -502,16 +466,16 @@ const ValidateEmail = (email) => {
                   ? `Point choisi : ${selectedServicePoint.name}`
                   : "Choisir un Point Relais"}
               </button>
-            )} */}
+            )} 
             {/* AJOUT : Bouton pour choisir le Point Relais */}
-            <button 
+            {/* <button 
               type="button" 
               onClick={openServicePointPicker} 
               className="relay-btn" 
 
             >
                {selectedServicePoint ? `Point choisi: ${selectedServicePoint.name}` : "Choisir un Point Relais"}
-            </button>
+            </button> */}
           
           </div>
 
